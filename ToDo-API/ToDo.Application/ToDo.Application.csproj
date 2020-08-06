@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ToDo.Infra.CrossCutting\ToDo.Infra.CrossCutting.csproj" />
     <ProjectReference Include="..\ToDo.Infra.Data\ToDo.Infra.Data.csproj" />
   </ItemGroup>
 

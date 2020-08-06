@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ToDo.Domain.Entities;
-using ToDo.Domain.Interfaces;
 using ToDo.Infra.Data.Context;
 
 namespace ToDo.Infra.Data.Repository
@@ -15,27 +14,27 @@ namespace ToDo.Infra.Data.Repository
 			_toDoContext = toDoContext;
 		}
 
-		protected virtual void Insert(T obj)
+		protected virtual void Inserir(T obj)
 		{
 			_toDoContext.Set<T>().Add(obj);
 			_toDoContext.SaveChanges();
 		}
 
-		protected virtual void Update(T obj)
+		protected virtual void Alterar(T obj)
 		{
 			_toDoContext.Entry(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
 			_toDoContext.SaveChanges();
 		}
 
-		protected virtual void Delete(int id)
+		protected virtual void Excluir(int id)
 		{
-			_toDoContext.Set<T>().Remove(Select(id));
+			_toDoContext.Set<T>().Remove(ById(id));
 			_toDoContext.SaveChanges();
 		}
 
-		protected virtual IList<T> Select() => _toDoContext.Set<T>().ToList();
+		protected virtual IList<T> Todos() => _toDoContext.Set<T>().ToList();
 
-		protected virtual T Select(int id) =>
+		protected virtual T ById(int id) =>
 			_toDoContext.Set<T>().Find(id);
 	}
 }

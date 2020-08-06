@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using ToDo.Infra.Shared.NotificationContext;
 
 namespace ToDo.Infra.CrossCutting.InversionOfControl
 {
@@ -6,6 +7,7 @@ namespace ToDo.Infra.CrossCutting.InversionOfControl
 	{
 		public static void AddNotificationDependency(this IServiceCollection services)
 		{
+			services.AddScoped<NotificationContext>();
 		}
 	}
 }

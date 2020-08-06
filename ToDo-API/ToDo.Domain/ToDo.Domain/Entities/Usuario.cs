@@ -7,6 +7,29 @@ namespace ToDo.Domain.Entities
 {
 	public class Usuario : BaseEntity<int>
 	{
+		public Usuario(int id,
+					   Nome nome,
+					   Endereco endereco,
+					   Cpf cpf,
+					   Telefone telefone,
+					   Email email,
+					   string login,
+					   string senha,
+					   DateTime? dataMinimaProximoEmprestimo,
+					   int idInstituicaoEnsino)
+		{
+			Id = id;
+			Nome = nome;
+			Endereco = endereco;
+			Cpf = cpf;
+			Telefone = telefone;
+			Email = email;
+			Login = login;
+			Senha = senha;
+			DataMinimaProximoEmprestimo = dataMinimaProximoEmprestimo;
+			IdInstituicaoEnsino = idInstituicaoEnsino;
+		}
+
 		public Nome Nome { get; }
 		public Endereco Endereco { get; }
 		public Cpf Cpf { get; }

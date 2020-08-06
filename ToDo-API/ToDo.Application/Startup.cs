@@ -1,17 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using ToDo.Infra.Data.Context;
+using ToDo.Infra.CrossCutting.Filter;
+using ToDo.Infra.CrossCutting.InversionOfControl;
 
 namespace ToDo.Application
 {
@@ -24,15 +17,20 @@ namespace ToDo.Application
 
 		public IConfiguration Configuration { get; }
 
-		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddControllers();
-
-			services.AddDbContext<ToDoContext>(options => options.UseSqlServer("Server=DESKTOP-5J4DB80\\SQLEXPRESS;Database=LivrariaToDo;integrated security=true;"));
+			services.AddMvc(config =>
+			{
+				config.EnableEndpointRouting = false;
+				config.Filters.Add<NotificationFilter>();
+			});
+			services.AddDependencySql();
+			services.AddSqlRepositoryDependency();
+			services.AddServiceDependency();
+			services.AddSwaggerDependency();
+			services.AddNotificationDependency();
 		}
 
-		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
 			if (env.IsDevelopment())
@@ -41,15 +39,11 @@ namespace ToDo.Application
 			}
 
 			app.UseHttpsRedirection();
+			app.UseMvc();
+			app.UseSwaggerDependency();
 
-			app.UseRouting();
+			//app.UseAuthorization();
 
-			app.UseAuthorization();
-
-			app.UseEndpoints(endpoints =>
-			{
-				endpoints.MapControllers();
-			});
 		}
 	}
 }

@@ -9,6 +9,6 @@ namespace ToDo.Domain.Entities
 			Id = id;
 		}
 
-		public virtual T Id { get; }
+		public virtual T Id { get; protected set; }
 	}
 }
