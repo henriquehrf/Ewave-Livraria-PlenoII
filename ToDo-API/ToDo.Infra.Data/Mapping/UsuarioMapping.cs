@@ -54,6 +54,11 @@ namespace ToDo.Infra.Data.Mapping
 			builder.Property(prop => prop.DataMinimaProximoEmprestimo)
 			  .HasColumnName("DataMinimaProximoEmprestimo")
 			  .HasColumnType("datetime");
+
+			builder.HasOne(prop => prop.InstituicaoEnsino)
+				.WithMany(prop => prop.Usuarios)
+				.HasPrincipalKey(prop => prop.Id)
+				.HasForeignKey(prop => prop.IdInstituicaoEnsino);
 		}
 	}
 }

@@ -20,6 +20,9 @@ namespace ToDo.Infra.Data.Context
 			base.OnModelCreating(modelBuilder);
 
 			modelBuilder.Entity<Usuario>(new UsuarioMapping().Configure);
+			modelBuilder.Entity<InstituicaoEnsino>(new InstituicaoEnsinoMapping().Configure);
+			modelBuilder.Entity<Livro>(new LivroMapping().Configure);
+			modelBuilder.Entity<Emprestimo>(new EmprestimoMapping().Configure);
 
 
 			var entites = Assembly

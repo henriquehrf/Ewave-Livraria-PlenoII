@@ -1,12 +1,12 @@
 ﻿using Microsoft.VisualBasic;
 using System;
+using System.Collections.Generic;
 using ToDo.Domain.ValueTypes;
 
 namespace ToDo.Domain.Entities
 {
 	public class Usuario : BaseEntity<int>
 	{
-
 		public Nome Nome { get; }
 		public Endereco Endereco { get; }
 		public Cpf Cpf { get; }
@@ -15,6 +15,12 @@ namespace ToDo.Domain.Entities
 		public string Login { get; }
 		public string Senha { get; }
 		public DateTime? DataMinimaProximoEmprestimo { get; }
+
+		public int IdInstituicaoEnsino { get; }
+
+		public virtual InstituicaoEnsino InstituicaoEnsino { get; }
+
+		public virtual ICollection<Emprestimo> Emprestimos { get; } = new HashSet<Emprestimo>();
 
 	}
 }
