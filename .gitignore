@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/ToDo-API/ToDo.Domain/.vs/ToDo.Domain/v16
+/.vs
+/ToDo-API/ToDo.Domain/ToDo.Domain/obj
