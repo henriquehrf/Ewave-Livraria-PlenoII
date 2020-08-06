@@ -5,3 +5,12 @@
 /ToDo-API/ToDo.Domain/.vs/ToDo.Domain/v16
 /.vs
 /ToDo-API/ToDo.Domain/ToDo.Domain/obj
+/ToDo-API/ToDo.Application/bin/Debug/netcoreapp3.1
+/ToDo-API/ToDo.Application/obj
+/ToDo-API/ToDo.Application/Properties
+/ToDo-API/ToDo.Domain/.vs
+/ToDo-API/ToDo.Domain/ToDo.Domain/bin/Debug/netcoreapp3.1
+/ToDo-API/ToDo.Domain/ToDo.Infra.CrossCutting/bin/Debug/netcoreapp3.1
+/ToDo-API/ToDo.Domain/ToDo.Infra.CrossCutting/obj
+/ToDo-API/ToDo.Infra.Data/bin/Debug/netcoreapp3.1
+/ToDo-API/ToDo.Infra.Data/obj
