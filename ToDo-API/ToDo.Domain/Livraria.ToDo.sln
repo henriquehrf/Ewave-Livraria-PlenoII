@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Infra.Data", "..\ToDo.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Application", "..\ToDo.Application\ToDo.Application.csproj", "{372F74A4-36D1-40DB-B420-F96D79DF35ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo.Infra.CrossCutting", "ToDo.Infra.CrossCutting\ToDo.Infra.CrossCutting.csproj", "{5C278895-0147-4FE1-A8D3-17D951C07496}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo.Infra.CrossCutting", "..\ToDo.Infra.CrossCutting\ToDo.Infra.CrossCutting.csproj", "{EE0A402F-407F-481D-BF1C-C2E2CA9E5E6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{372F74A4-36D1-40DB-B420-F96D79DF35ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{372F74A4-36D1-40DB-B420-F96D79DF35ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{372F74A4-36D1-40DB-B420-F96D79DF35ED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5C278895-0147-4FE1-A8D3-17D951C07496}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C278895-0147-4FE1-A8D3-17D951C07496}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C278895-0147-4FE1-A8D3-17D951C07496}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C278895-0147-4FE1-A8D3-17D951C07496}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE0A402F-407F-481D-BF1C-C2E2CA9E5E6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE0A402F-407F-481D-BF1C-C2E2CA9E5E6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE0A402F-407F-481D-BF1C-C2E2CA9E5E6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE0A402F-407F-481D-BF1C-C2E2CA9E5E6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

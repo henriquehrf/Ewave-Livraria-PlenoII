@@ -14,3 +14,6 @@
 /ToDo-API/ToDo.Domain/ToDo.Infra.CrossCutting/obj
 /ToDo-API/ToDo.Infra.Data/bin/Debug/netcoreapp3.1
 /ToDo-API/ToDo.Infra.Data/obj
+/ToDo-API/ToDo.Infra.CrossCutting/bin/Debug/netcoreapp3.1
+/ToDo-API/ToDo.Infra.CrossCutting/obj/Debug/netcoreapp3.1
+/ToDo-API/ToDo.Infra.CrossCutting/obj
