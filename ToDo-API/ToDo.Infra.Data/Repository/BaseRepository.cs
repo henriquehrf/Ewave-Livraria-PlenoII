@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using ToDo.Domain.Entities;
+using ToDo.Domain.Interfaces;
 using ToDo.Infra.Data.Context;
 
 namespace ToDo.Infra.Data.Repository
