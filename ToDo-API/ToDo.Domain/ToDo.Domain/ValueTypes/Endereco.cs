@@ -4,13 +4,14 @@ namespace ToDo.Domain.ValueTypes
 {
 	public struct Endereco
 	{
+		public Contract Contract { get; }
+
 		private readonly string _valor;
-		public readonly Contract _contract;
 
 		private Endereco(string value)
 		{
 			_valor = value;
-			_contract = new Contract();
+			Contract = new Contract();
 			Validar();
 		}
 
@@ -31,7 +32,7 @@ namespace ToDo.Domain.ValueTypes
 
 		private bool AdicionarNotificacao(string mensagem)
 		{
-			_contract.AddNotification(nameof(Endereco), mensagem);
+			Contract.AddNotification(nameof(Endereco), mensagem);
 			return false;
 		}
 	}

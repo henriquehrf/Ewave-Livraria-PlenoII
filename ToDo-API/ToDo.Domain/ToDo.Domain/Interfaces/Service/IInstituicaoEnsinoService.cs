@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using ToDo.Domain.Models;
 
-namespace ToDo.Domain.Interfaces
+namespace ToDo.Domain.Interfaces.Service
 {
-	public interface IInstituicaoEnsinoRepository
+	public interface IInstituicaoEnsinoService
 	{
 		void Inserir(InstituicaoEnsinoModel instituicao);
 		void Alterar(InstituicaoEnsinoModel instituicao);
 		void Excluir(InstituicaoEnsinoModel instituicao);
-		InstituicaoEnsinoModel ById(int id);
-		IEnumerable<InstituicaoEnsinoModel> Todos();
+		InstituicaoEnsinoModel InstituicaoEnsinoPorId(int id);
+		IEnumerable<InstituicaoEnsinoModel> TodosInstituicoesEnsino();
 	}
 }

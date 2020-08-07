@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using ToDo.Domain.ValueTypes;
 
@@ -28,6 +27,13 @@ namespace ToDo.Domain.Entities
 			Senha = senha;
 			DataMinimaProximoEmprestimo = dataMinimaProximoEmprestimo;
 			IdInstituicaoEnsino = idInstituicaoEnsino;
+
+			AddNotifications(
+				nome.Contract,
+				endereco.Contract,
+				cpf.Contract,
+				telefone.Contract,
+				email.Contract);
 		}
 
 		public Nome Nome { get; }

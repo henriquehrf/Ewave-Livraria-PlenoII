@@ -1,17 +1,16 @@
 ﻿using Flunt.Validations;
-using System.Text.RegularExpressions;
 
 namespace ToDo.Domain.ValueTypes
 {
 	public struct Email
 	{
+		public Contract Contract { get; }
 		private readonly string _valor;
-		public readonly Contract _contract;
 
 		private Email(string value)
 		{
 			_valor = value;
-			_contract = new Contract();
+			Contract = new Contract();
 			Validar();
 		}
 
@@ -27,7 +26,7 @@ namespace ToDo.Domain.ValueTypes
 			bool ehUmFinalValido = (_valor.EndsWith(".com") || _valor.EndsWith(".com.br"));
 			bool contemArroba = _valor.Contains("@");
 
-			if (contemArroba && ehUmFinalValido)
+			if (!contemArroba && !ehUmFinalValido)
 				return AdicionarNotificacao("Formato de email inválido!");
 
 			return true;
@@ -35,7 +34,7 @@ namespace ToDo.Domain.ValueTypes
 
 		private bool AdicionarNotificacao(string mensagem)
 		{
-			_contract.AddNotification(nameof(Email), mensagem);
+			Contract.AddNotification(nameof(Email), mensagem);
 			return false;
 		}
 	}

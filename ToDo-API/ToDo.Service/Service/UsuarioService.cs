@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ToDo.Domain.Interfaces;
 using ToDo.Domain.Interfaces.Service;
 using ToDo.Domain.Models;
 using ToDo.Infra.Shared.NotificationContext;
+using ToDo.Infra.Shared.ObjectMapper;
 
 namespace ToDo.Service.Service
 {
@@ -18,11 +20,22 @@ namespace ToDo.Service.Service
 			_notificationContext = notificationContext;
 		}
 
-		public void Alterar(UsuarioModel usuario) => _usuarioRepository.Alterar(usuario);
+		public void Inserir(UsuarioModel usuario)
+		{
+			_notificationContext.AddNotifications(usuario.ToEntity().Notifications);
+
+			if (!_notificationContext.Invalid)
+				_usuarioRepository.Inserir(usuario);
+		}
+		public void Alterar(UsuarioModel usuario)
+		{
+			_notificationContext.AddNotifications(usuario.ToEntity().Notifications);
+
+			if (!_notificationContext.Invalid)
+				_usuarioRepository.Alterar(usuario);
+		}
 
 		public void Excluir(UsuarioModel usuario) => _usuarioRepository.Excluir(usuario);
-
-		public void Inserir(UsuarioModel usuario) => _usuarioRepository.Inserir(usuario);
 
 		public UsuarioModel UsuarioPorId(int id) => _usuarioRepository.ById(id);
 		public IEnumerable<UsuarioModel> TodosUsuarios() => _usuarioRepository.Todos();

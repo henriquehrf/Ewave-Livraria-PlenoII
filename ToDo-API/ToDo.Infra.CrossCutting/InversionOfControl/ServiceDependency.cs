@@ -9,6 +9,7 @@ namespace ToDo.Infra.CrossCutting.InversionOfControl
 		public static void AddServiceDependency(this IServiceCollection services)
 		{
 			services.AddScoped<IUsuarioService, UsuarioService>();
+			services.AddScoped<IInstituicaoEnsinoService, InstituicaoEnsinoService>();
 		}
 	}
 }
