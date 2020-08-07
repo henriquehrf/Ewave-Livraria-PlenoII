@@ -6,6 +6,7 @@ namespace ToDo.Domain.ValueTypes
 	public struct Telefone
 	{
 		public Contract Contract { get; }
+
 		private readonly string _valor;
 
 		private Telefone(string value)

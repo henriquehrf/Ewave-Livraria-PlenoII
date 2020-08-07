@@ -17,8 +17,8 @@ namespace ToDo.Application.Controllers
 		{
 			try
 			{
-				var usuario = _institucaoEnsinoService.TodosInstituicoesEnsino();
-				return Ok(usuario);
+				var instituicoes = _institucaoEnsinoService.TodosInstituicoesEnsino();
+				return Ok(instituicoes);
 			}
 			catch (Exception ex)
 			{

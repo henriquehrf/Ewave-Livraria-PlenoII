@@ -31,9 +31,9 @@ namespace ToDo.Domain.Entities
 			AddNotifications(
 				nome.Contract,
 				endereco.Contract,
-				cpf.Contract,
+				cpf._contract,
 				telefone.Contract,
-				email.Contract);
+				email._contract);
 		}
 
 		public Nome Nome { get; }

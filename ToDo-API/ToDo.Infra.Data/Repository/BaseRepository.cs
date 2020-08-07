@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using ToDo.Domain.Entities;
 using ToDo.Infra.Data.Context;
 
@@ -33,6 +35,8 @@ namespace ToDo.Infra.Data.Repository
 		}
 
 		protected virtual IList<T> Todos() => _toDoContext.Set<T>().ToList();
+
+		protected virtual IList<T> Filter(Expression<Func<T, bool>> predicate) => _toDoContext.Set<T>().Where(predicate).ToList();
 
 		protected virtual T ById(int id) =>
 			_toDoContext.Set<T>().Find(id);

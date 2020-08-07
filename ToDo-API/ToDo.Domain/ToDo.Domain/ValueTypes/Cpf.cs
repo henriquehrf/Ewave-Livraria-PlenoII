@@ -4,13 +4,13 @@ namespace ToDo.Domain.ValueTypes
 {
 	public struct Cpf
 	{
-		public Contract Contract { get; }
 		private readonly string _valor;
+		public readonly Contract _contract;
 
 		private Cpf(string value)
 		{
 			_valor = value;
-			Contract = new Contract();
+			_contract = new Contract();
 			Validar();
 		}
 
@@ -31,7 +31,7 @@ namespace ToDo.Domain.ValueTypes
 
 		private bool AdicionarNotificacao(string mensagem)
 		{
-			Contract.AddNotification(nameof(Cpf), mensagem);
+			_contract.AddNotification(nameof(Cpf), mensagem);
 			return false;
 		}
 	}

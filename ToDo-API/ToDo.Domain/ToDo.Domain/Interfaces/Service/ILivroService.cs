@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using ToDo.Domain.Models;
 
-namespace ToDo.Domain.Interfaces
+namespace ToDo.Domain.Interfaces.Service
 {
-	public interface ILivroRepository
+	public interface ILivroService
 	{
 		void Inserir(LivroModel livro);
 		void Alterar(LivroModel livro);
