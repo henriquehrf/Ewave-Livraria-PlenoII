@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ToDo.Domain.Interfaces.Service;
 using ToDo.Domain.Models;
@@ -6,6 +7,7 @@ using ToDo.Domain.Models;
 namespace ToDo.Application.Controllers
 {
 	[ApiController]
+	[Authorize("Bearer")]
 	[Route("api/usuario")]
 	public class UsuarioController : Controller
 	{

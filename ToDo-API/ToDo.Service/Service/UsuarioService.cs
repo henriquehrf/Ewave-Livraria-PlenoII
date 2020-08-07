@@ -37,7 +37,7 @@ namespace ToDo.Service.Service
 
 		public void Excluir(UsuarioModel usuario) => _usuarioRepository.Excluir(usuario);
 
-		public UsuarioModel UsuarioPorId(int id) => _usuarioRepository.ById(id);
+		public UsuarioModel UsuarioPorLogin(string login) => _usuarioRepository.UsuarioPorLogin(login);
 		public IEnumerable<UsuarioModel> TodosUsuarios() => _usuarioRepository.Todos();
 	}
 }

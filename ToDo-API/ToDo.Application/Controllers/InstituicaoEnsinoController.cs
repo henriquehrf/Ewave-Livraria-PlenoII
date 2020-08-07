@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using ToDo.Domain.Interfaces.Service;
 using ToDo.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ToDo.Application.Controllers
 {
 	[ApiController]
+	[Authorize("Bearer")]
 	[Route("api/instituicao-ensino")]
 	public class InstituicaoEnsinoController : Controller
 	{

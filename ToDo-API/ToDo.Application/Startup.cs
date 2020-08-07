@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ToDo.Infra.CrossCutting.Filter;
 using ToDo.Infra.CrossCutting.InversionOfControl;
+using ToDo.Infra.CrossCutting.Token;
 
 namespace ToDo.Application
 {
@@ -29,6 +30,7 @@ namespace ToDo.Application
 			services.AddServiceDependency();
 			services.AddSwaggerDependency();
 			services.AddNotificationDependency();
+			services.ConfigureToken(Configuration);
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -2,10 +2,12 @@
 using System;
 using ToDo.Domain.Interfaces.Service;
 using ToDo.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ToDo.Application.Controllers
 {
 	[ApiController]
+	[Authorize("Bearer")]
 	[Route("api/emprestimo")]
 	public class EmprestimoController : Controller
 	{

@@ -15,5 +15,6 @@ namespace ToDo.Domain.Models
 		public string Login { get; set; }
 		public string Senha { get; set; }
 		public DateTime? DataProxEmprestimo { get; set; }
+		public string AccessKey { get; set; }
 	}
 }

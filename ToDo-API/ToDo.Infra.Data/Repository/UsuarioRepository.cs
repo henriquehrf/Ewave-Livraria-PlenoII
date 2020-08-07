@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using ToDo.Domain.Entities;
 using ToDo.Domain.Interfaces;
 using ToDo.Domain.Models;
@@ -19,7 +20,7 @@ namespace ToDo.Infra.Data.Repository
 
 		public void Inserir(UsuarioModel usuario) => base.Inserir(usuario.ToEntity());
 
-		UsuarioModel IUsuarioRepository.ById(int id) => base.ById(id).ToModel();
+		UsuarioModel IUsuarioRepository.UsuarioPorLogin(string login) => Filter(u => u.Login == login).SingleOrDefault()?.ToModel();
 
 		IEnumerable<UsuarioModel> IUsuarioRepository.Todos() => base.Todos().ToEnumerableModel();
 

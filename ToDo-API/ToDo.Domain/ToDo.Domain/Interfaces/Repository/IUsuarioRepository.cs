@@ -8,7 +8,7 @@ namespace ToDo.Domain.Interfaces
 		void Inserir(UsuarioModel usuario);
 		void Alterar(UsuarioModel usuario);
 		void Excluir(UsuarioModel usuario);
-		UsuarioModel ById(int id);
+		UsuarioModel UsuarioPorLogin(string login);
 		IEnumerable<UsuarioModel> Todos();
 	}
 }
