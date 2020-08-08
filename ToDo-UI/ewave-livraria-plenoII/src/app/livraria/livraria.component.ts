@@ -1,9 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'todo-livraria',
     templateUrl: 'livraria.component.html'
 })
 export class LivrariaComponent {
-    constructor(){}
+
+    @Input() menuSelecionado: string;
+    constructor(){
+    }
+
+
+    receberValorMenu(valor){
+        this.menuSelecionado = valor;
+    }
 }

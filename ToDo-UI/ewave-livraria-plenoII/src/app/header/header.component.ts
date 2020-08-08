@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { User } from '../core/usuario/usuario';
 import { UserService } from 'app/core/usuario/usuario.service';
 import { Router } from '@angular/router';
@@ -11,11 +11,13 @@ import { Observable } from 'rxjs';
 export class HeaderComponent {
     user$: Observable<User>;
 
+    @Output() menuSelecionado = new EventEmitter<string>();
+
     constructor(
         private userService: UserService,
         private router: Router) {
-        console.log(this.user$);
         this.user$ = userService.getUser();
+        this.menuSelecionado.emit("instituicao-ensino");
     }
 
     logout() {
@@ -23,4 +25,7 @@ export class HeaderComponent {
         this.router.navigate(['']);
     }
 
+    selecionarMenu(menu) {
+        this.menuSelecionado.emit(menu);
+    }
 }

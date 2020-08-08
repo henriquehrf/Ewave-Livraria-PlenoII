@@ -1,2 +1,5 @@
-<todo-header></todo-header>
-<h1>Hello Word!</h1>
+<todo-header (menuSelecionado)="receberValorMenu($event)"></todo-header>
+
+<todo-instituicao-ensino-list [hidden]="!(menuSelecionado == 'instituicao-ensino-list')"
+    (menuSelecionado)="receberValorMenu($event)">
+</todo-instituicao-ensino-list>

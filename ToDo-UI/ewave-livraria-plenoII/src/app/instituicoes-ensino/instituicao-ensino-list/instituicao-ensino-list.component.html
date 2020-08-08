@@ -1,0 +1,32 @@
+<div  [hidden]="exibeFormularioNovo">
+    <div class="m-4" >
+        <button class="btn btn-primary" (click)="novo()">Novo</button>
+        <button class="btn ml-2" (click)="atualizar()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+    </div>
+    <table class="table m-4">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">CNPJ</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Endereço</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let instituicao of instituicoes | async">
+                <td scope="row">{{instituicao.id}}</td>
+                <td scope="row">{{instituicao.nome}}</td>
+                <td scope="row">{{instituicao.cnpj}}</td>
+                <td scope="row">{{instituicao.telefone}}</td>
+                <td scope="row">{{instituicao.endereco}}</td>
+                <td><button class="btn"><i class="fa fa-pencil" aria-hidden="true" (click)=editar(instituicao)></i></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div [hidden]="!exibeFormularioNovo">
+    <todo-instituicao-ensino (exibeMenuNovo)="voltar()" [instituicao]="instituicaoSelecionada" > </todo-instituicao-ensino>
+</div >

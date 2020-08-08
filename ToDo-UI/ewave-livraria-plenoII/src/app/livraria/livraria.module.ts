@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { HeaderModule } from '../header/header.module';
+import { InstituicoesEnsinoModule } from '../instituicoes-ensino/instituicoes-ensino.module';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { HeaderModule } from '../header/header.module';
         CommonModule,
         HttpClientModule,
         RouterModule,
-        HeaderModule
+        HeaderModule,
+        InstituicoesEnsinoModule
     ],
     exports: [ LivrariaComponent ]
 })
