@@ -4,7 +4,7 @@ import { InstituicaoEnsinoService } from '../instituicao-ensino/instituicao-ensi
 import { InstituicaoEnsino } from '../instituicao-ensino/instituicao-ensino';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { InstituicaoEnsinoModule } from '../instituicao-ensino/instituicao-ensino.module';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'todo-instituicao-ensino-list',
@@ -13,23 +13,21 @@ import { InstituicaoEnsinoModule } from '../instituicao-ensino/instituicao-ensin
 export class InstituicaoEnsinoListComponent implements OnInit {
 
   private instituicoes = new BehaviorSubject<any>(null);
-  @Input() exibeFormularioNovo: boolean;
   private instituicaoSelecionada: InstituicaoEnsino;
+  private termoPesquisa: string;
+
+  @Input() exibeFormularioNovo: boolean;
 
   constructor(private instituicaoEnsinoService: InstituicaoEnsinoService) {
-
   }
 
   ngOnInit(): void {
-    this.carregarDados();
+    this.termoPesquisa = "";
+    this.buscarDados();
   }
 
-  atualizar() {
-    this.carregarDados();
-  }
-
-  carregarDados() {
-    this.instituicaoEnsinoService.retornarTodasInstituicaoEnsino().subscribe(
+  buscarDados() {
+    this.instituicaoEnsinoService.buscarInstituicaoEnsinoPorNome(this.termoPesquisa).pipe(debounceTime(500)).subscribe(
       (response) => {
         this.instituicoes.next(response);
       },
@@ -41,7 +39,10 @@ export class InstituicaoEnsinoListComponent implements OnInit {
 
   novo() {
     this.exibeFormularioNovo = true;
-    //this.instituicaoSelecionada = null;
+  }
+
+  voltar() {
+    this.exibeFormularioNovo = false;
   }
 
   editar(instituicao) {
@@ -49,8 +50,19 @@ export class InstituicaoEnsinoListComponent implements OnInit {
     this.exibeFormularioNovo = true;
   }
 
-  voltar() {
-    this.exibeFormularioNovo = false;
-    //this.instituicaoSelecionada = null;
+  remover(instituicao) {
+    this.instituicaoEnsinoService.removerInstituicaoEnsino(instituicao.id).subscribe(
+      () => {
+        alert("Removido com sucesso!");
+        this.buscarDados();
+      },
+      err => {
+        alert(err);
+      }
+    );
+  }
+
+  preencherTermoPesquisa(valor) {
+    this.termoPesquisa = valor;
   }
 }

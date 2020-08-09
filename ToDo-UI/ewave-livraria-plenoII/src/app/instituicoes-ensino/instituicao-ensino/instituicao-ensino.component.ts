@@ -20,6 +20,7 @@ export class InstituicaoEnsinoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.limparFormulario();
   }
 
   novoFormulario() {
@@ -33,7 +34,7 @@ export class InstituicaoEnsinoComponent implements OnInit {
   }
 
   salvar() {
-    const ehAlteracao = (this.instituicao != null);
+    const ehAlteracao = (this.instituicao.id > 0);
     if (!ehAlteracao) {
       this.instituicaoEnsinoService.inserirInstituicaoEnsino(this.instituicaoForm.value).subscribe(
         () => {

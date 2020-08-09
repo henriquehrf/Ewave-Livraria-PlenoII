@@ -1,8 +1,10 @@
-<div  [hidden]="exibeFormularioNovo">
-    <div class="m-4" >
-        <button class="btn btn-primary" (click)="novo()">Novo</button>
-        <button class="btn ml-2" (click)="atualizar()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+<div [hidden]="exibeFormularioNovo">
+    <div class="input-group m-4">
+        <button class="btn btn-primary mr-2" (click)="novo()">Novo</button>
+        <todo-search (textoPesquisado)="preencherTermoPesquisa($event)"></todo-search>
+        <button class="btn ml-2" (click)="buscarDados()"><i class="fa fa-search" aria-hidden="true"></i></button>
     </div>
+
     <table class="table m-4">
         <thead>
             <tr>
@@ -21,12 +23,16 @@
                 <td scope="row">{{instituicao.cnpj}}</td>
                 <td scope="row">{{instituicao.telefone}}</td>
                 <td scope="row">{{instituicao.endereco}}</td>
-                <td><button class="btn"><i class="fa fa-pencil" aria-hidden="true" (click)=editar(instituicao)></i></button></td>
+                <td><button (click)=editar(instituicao) class="btn mr-2"><i class="fa fa-pencil"
+                            aria-hidden="true"></i></button>
+                    <button class="btn" style="background-color: #F08080;" (click)="remover(instituicao)"><i class="fa fa-trash text-white" aria-hidden="true"></i></button>
+                </td>
             </tr>
         </tbody>
     </table>
 </div>
 
 <div [hidden]="!exibeFormularioNovo">
-    <todo-instituicao-ensino (exibeMenuNovo)="voltar()" [instituicao]="instituicaoSelecionada" > </todo-instituicao-ensino>
-</div >
+    <todo-instituicao-ensino (exibeMenuNovo)="voltar()" [instituicao]="instituicaoSelecionada">
+    </todo-instituicao-ensino>
+</div>

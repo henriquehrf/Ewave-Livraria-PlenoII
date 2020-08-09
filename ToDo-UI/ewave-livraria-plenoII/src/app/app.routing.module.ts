@@ -24,18 +24,6 @@ const routes: Routes = [
 
     },
     {
-        path: 'instituicao-ensino-list',
-        component: InstituicaoEnsinoListComponent,
-        canActivate:[HomeGuard]
-
-    },
-    {
-        path: 'instituicao-ensino',
-        component: InstituicaoEnsinoComponent,
-        canActivate:[HomeGuard]
-
-    },
-    {
         path: '**',
         component: NotFoundComponent
     }

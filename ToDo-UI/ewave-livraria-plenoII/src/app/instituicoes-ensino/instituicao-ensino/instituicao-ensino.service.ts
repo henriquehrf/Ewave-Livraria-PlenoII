@@ -29,11 +29,25 @@ export class InstituicaoEnsinoService {
             );
     }
 
-    retornarTodasInstituicaoEnsino(){
+    buscarInstituicaoEnsinoPorNome(nome) {
         return this.http
-        .get(
-            API_URL + '/api/instituicao-ensino'
-        ); 
+            .get(
+                API_URL + '/api/instituicao-ensino/' + nome
+            );
+    }
+
+    retornarTodasInstituicaoEnsino() {
+        return this.http
+            .get(
+                API_URL + '/api/instituicao-ensino'
+            );
+    }
+
+    removerInstituicaoEnsino(id) {
+        return this.http
+            .delete(
+                API_URL + '/api/instituicao-ensino/' + id
+            );
     }
 }
 
