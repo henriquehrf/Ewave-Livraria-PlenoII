@@ -4,8 +4,6 @@ import { InstituicaoEnsinoService } from './instituicao-ensino.service';
 import { Router } from '@angular/router';
 import { InstituicaoEnsinoModule } from './instituicao-ensino.module';
 import { InstituicaoEnsino } from './instituicao-ensino';
-/* import { BehaviorSubject } from 'rxjs';
-import { Dropdown } from 'app/shared/components/dropdown/dropdown'; */
 
 @Component({
   selector: 'todo-instituicao-ensino',
@@ -15,7 +13,6 @@ export class InstituicaoEnsinoComponent implements OnInit {
 
   @Input() instituicao: InstituicaoEnsino;
   @Output() exibeMenuNovo = new EventEmitter<boolean>();
-  //private instituicoesDeEnsino = new BehaviorSubject<any>(null);
 
   instituicaoForm: FormGroup;
   constructor(private instituicaoEnsinoService: InstituicaoEnsinoService) {
@@ -24,7 +21,6 @@ export class InstituicaoEnsinoComponent implements OnInit {
   ngOnInit(): void {
     this.novoFormulario();
     this.limparFormulario();
-    // this.carregarDropdonw();
   }
 
   novoFormulario() {

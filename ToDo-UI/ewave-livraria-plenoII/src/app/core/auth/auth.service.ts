@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
-import { UserService } from '../usuario/usuario.service';
+import { UserService } from '../user/usuario.service';
 import {environment} from '@env/environment';
 
 const API_URL = environment.todo_api;

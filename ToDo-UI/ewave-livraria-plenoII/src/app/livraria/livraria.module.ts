@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { HeaderModule } from '../header/header.module';
 import { InstituicoesEnsinoModule } from '../instituicoes-ensino/instituicoes-ensino.module';
+import { UsuariosModule } from 'app/usuarios/usuarios.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { InstituicoesEnsinoModule } from '../instituicoes-ensino/instituicoes-en
         HttpClientModule,
         RouterModule,
         HeaderModule,
-        InstituicoesEnsinoModule
+        InstituicoesEnsinoModule,
+        UsuariosModule
     ],
     exports: [ LivrariaComponent ]
 })

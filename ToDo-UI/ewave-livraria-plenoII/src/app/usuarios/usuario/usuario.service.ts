@@ -1,51 +1,51 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
-import { InstituicaoEnsino } from './instituicao-ensino'
+import { Usuario } from './usuario'
 
 const API_URL = environment.todo_api;
 
 @Injectable({ providedIn: 'root' })
-export class InstituicaoEnsinoService {
+export class UsuarioService {
 
     constructor(private http: HttpClient) { }
 
-    inserirInstituicaoEnsino(instituicao: InstituicaoEnsino) {
+    inserirUsuario(usuario: Usuario) {
         return this.http
             .post(
-                API_URL + '/api/instituicao-ensino',
-                instituicao,
+                API_URL + '/api/usuario',
+                usuario,
                 { observe: 'response' },
             );
     }
 
-    alterarInstituicaoEnsino(instituicao: InstituicaoEnsino) {
+    alterarUsuario(usuario: Usuario) {
         return this.http
             .put(
-                API_URL + '/api/instituicao-ensino',
-                instituicao,
+                API_URL + '/api/usuario',
+                usuario,
                 { observe: 'response' },
             );
     }
 
-    buscarInstituicaoEnsinoPorNome(nome) {
+    buscarUsuarioPorNome(nome) {
         return this.http
             .get(
-                API_URL + '/api/instituicao-ensino/' + nome
+                API_URL + '/api/usuario/' + nome
             );
     }
 
-    retornarTodasInstituicaoEnsino() {
+    retornarTodasUsuario() {
         return this.http
             .get(
-                API_URL + '/api/instituicao-ensino'
+                API_URL + '/api/usuario'
             );
     }
 
-    removerInstituicaoEnsino(id) {
+    removerUsuario(id) {
         return this.http
             .delete(
-                API_URL + '/api/instituicao-ensino/' + id
+                API_URL + '/api/usuario/' + id
             );
     }
 }

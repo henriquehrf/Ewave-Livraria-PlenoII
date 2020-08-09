@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Dropdown } from './dropdown';
 
@@ -9,15 +9,17 @@ import { Dropdown } from './dropdown';
 export class DropdrowComponent implements OnInit {
 
   @Input() dados: BehaviorSubject<Dropdown>;
-  @Output() valorSelecionado: string
+  @Input() selecionaValor: BehaviorSubject<string>
+  @Output() valorSelecionado = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+
   onChange(valor) {
-    this.valorSelecionado = valor;
+    this.valorSelecionado.emit(valor);
   }
 
 }
