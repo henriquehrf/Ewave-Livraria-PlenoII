@@ -4,6 +4,10 @@ import { CommonModule } from '@angular/common';
 
 @NgModule({
     declarations: [DropdrowComponent],
-    imports: [ CommonModule ]
+    imports: [CommonModule],
+    exports: [
+        DropdrowComponent
+    ]
 })
-export class DropDownModule { }
+export class DropDownModule {
+}
