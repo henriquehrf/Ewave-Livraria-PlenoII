@@ -21,7 +21,9 @@ namespace ToDo.Service.Service
 
 		public object EfetuarLogin(CredenciaisModel credenciais, TokenConfigurationModel tokenConfigurationModel)
 		{
-			if (!CredencialEhValida(credenciais))
+			var usuarioBase = _usuarioService.UsuarioPorLogin(credenciais.Usuario);
+
+			if (!CredencialEhValida(credenciais, usuarioBase))
 			{
 				return new
 				{
@@ -34,7 +36,8 @@ namespace ToDo.Service.Service
 				new GenericIdentity(credenciais.Usuario, "Login"),
 				new[] {
 						new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),
-						new Claim(JwtRegisteredClaimNames.UniqueName, credenciais.Usuario)
+						new Claim("Nome", usuarioBase.Nome),
+						new Claim("Perfil", usuarioBase.TipoUsuarioDescricao),
 				}
 			);
 			;
@@ -68,12 +71,11 @@ namespace ToDo.Service.Service
 			return DateTime.Now + TimeSpan.FromSeconds(tempoEmSegundos);
 		}
 
-		private bool CredencialEhValida(CredenciaisModel credenciais)
+		private bool CredencialEhValida(CredenciaisModel credenciais, UsuarioModel usuarioBase)
 		{
 			if (credenciais == null || string.IsNullOrWhiteSpace(credenciais.Usuario))
 				return false;
 
-			var usuarioBase = _usuarioService.UsuarioPorLogin(credenciais.Usuario);
 			return (usuarioBase != null &&
 					credenciais.Usuario == usuarioBase.Login &&
 					credenciais.Senha == usuarioBase.Senha);

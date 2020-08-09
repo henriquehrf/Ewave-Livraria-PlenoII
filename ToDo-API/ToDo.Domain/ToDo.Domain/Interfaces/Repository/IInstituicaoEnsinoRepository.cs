@@ -7,8 +7,9 @@ namespace ToDo.Domain.Interfaces
 	{
 		void Inserir(InstituicaoEnsinoModel instituicao);
 		void Alterar(InstituicaoEnsinoModel instituicao);
-		void Excluir(InstituicaoEnsinoModel instituicao);
+		void Excluir(int id);
 		InstituicaoEnsinoModel ById(int id);
 		IEnumerable<InstituicaoEnsinoModel> Todos();
+		IEnumerable<InstituicaoEnsinoModel> BuscarInstituicoesPorNome(string nome);
 	}
 }

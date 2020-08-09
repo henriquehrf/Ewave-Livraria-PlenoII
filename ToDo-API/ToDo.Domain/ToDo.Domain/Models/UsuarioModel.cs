@@ -12,6 +12,13 @@ namespace ToDo.Domain.Models
 		public string Telefone { get; set; }
 		public string Email { get; set; }
 		public int TipoUsuario { get; set; }
+		public string TipoUsuarioDescricao
+		{
+			get
+			{
+				return "Administrador";
+			}
+		}
 		public string Login { get; set; }
 		public string Senha { get; set; }
 		public DateTime? DataProxEmprestimo { get; set; }

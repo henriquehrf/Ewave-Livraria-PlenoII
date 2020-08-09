@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -20,6 +22,9 @@ namespace ToDo.Application
 
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddCors();
+			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
 			services.AddMvc(config =>
 			{
 				config.EnableEndpointRouting = false;
@@ -31,6 +36,8 @@ namespace ToDo.Application
 			services.AddSwaggerDependency();
 			services.AddNotificationDependency();
 			services.ConfigureToken(Configuration);
+
+			
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -40,11 +47,13 @@ namespace ToDo.Application
 				app.UseDeveloperExceptionPage();
 			}
 
-			app.UseHttpsRedirection();
-			app.UseMvc();
 			app.UseSwaggerDependency();
 
-			//app.UseAuthorization();
+			app.UseCors(builder => builder
+				.AllowAnyOrigin()
+				.AllowAnyMethod()
+				.AllowAnyHeader());
+			app.UseMvc();
 
 		}
 	}

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace ToDo.Application.Controllers
 {
 	[ApiController]
-	[Authorize("Bearer")]
+	//[Authorize("Bearer")]
 	[Route("api/instituicao-ensino")]
 	public class InstituicaoEnsinoController : Controller
 	{
@@ -20,6 +20,21 @@ namespace ToDo.Application.Controllers
 			try
 			{
 				var instituicoes = _institucaoEnsinoService.TodosInstituicoesEnsino();
+				return Ok(instituicoes);
+			}
+			catch (Exception ex)
+			{
+
+				return BadRequest(ex);
+			}
+		}
+
+		[HttpGet("{nome}")]
+		public IActionResult RetornarInstituicaoEnsinoPeloNome(string nome)
+		{
+			try
+			{
+				var instituicoes = _institucaoEnsinoService.BuscarInstituicoesPorNome(nome);
 				return Ok(instituicoes);
 			}
 			catch (Exception ex)
@@ -59,12 +74,12 @@ namespace ToDo.Application.Controllers
 			}
 		}
 
-		[HttpDelete]
-		public IActionResult Excluir([FromBody] InstituicaoEnsinoModel instituicaoEnsinoModel)
+		[HttpDelete("{id}")]
+		public IActionResult Excluir(int id)
 		{
 			try
 			{
-				_institucaoEnsinoService.Excluir(instituicaoEnsinoModel);
+				_institucaoEnsinoService.Excluir(id);
 
 				return Ok();
 			}

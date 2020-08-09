@@ -14,11 +14,12 @@ namespace ToDo.Application.Controllers
 
 		[AllowAnonymous]
 		[HttpPost]
-		public object EfetuarLogin(
+		public IActionResult EfetuarLogin(
 			[FromBody] CredenciaisModel credenciais,
 			[FromServices] TokenConfigurationModel tokenConfigurations)
 		{
-			return _loginService.EfetuarLogin(credenciais, tokenConfigurations);
+
+			return Ok(_loginService.EfetuarLogin(credenciais, tokenConfigurations));
 		}
 	}
 }

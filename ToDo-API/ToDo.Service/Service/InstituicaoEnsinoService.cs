@@ -34,11 +34,16 @@ namespace ToDo.Service.Service
 				_instituicaoEnsinoRepository.Alterar(instituicao);
 		}
 
-		public void Excluir(InstituicaoEnsinoModel instituicao) => _instituicaoEnsinoRepository.Excluir(instituicao);
+		public void Excluir(int Id) => _instituicaoEnsinoRepository.Excluir(Id);
 
 
 		public InstituicaoEnsinoModel InstituicaoEnsinoPorId(int id) => _instituicaoEnsinoRepository.ById(id);
 
 		public IEnumerable<InstituicaoEnsinoModel> TodosInstituicoesEnsino() => _instituicaoEnsinoRepository.Todos();
+
+		public IEnumerable<InstituicaoEnsinoModel> BuscarInstituicoesPorNome(string nome)
+		{
+			return _instituicaoEnsinoRepository.BuscarInstituicoesPorNome(nome);
+		}
 	}
 }

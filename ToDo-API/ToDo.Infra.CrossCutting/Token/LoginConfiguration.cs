@@ -15,7 +15,7 @@ namespace ToDo.Infra.CrossCutting.Token
 			Key = new RsaSecurityKey(provider.ExportParameters(true));
 
 			Credentials = new SigningCredentials(
-				Key, SecurityAlgorithms.RsaSha256Signature);
+				Key, SecurityAlgorithms.RsaSha256);
 		}
 	}
 }
