@@ -23,7 +23,7 @@ namespace ToDo.Domain.ValueTypes
 			if (string.IsNullOrWhiteSpace(_valor))
 				return AdicionarNotificacao("Obrigatório informar um CPF.");
 
-			if (_valor.Length != 11)
+			if (_valor.Replace(".","").Replace("-","").Length!= 11)
 				return AdicionarNotificacao("Um CPF valido deve conter 11 caracteres.");
 
 			return true;

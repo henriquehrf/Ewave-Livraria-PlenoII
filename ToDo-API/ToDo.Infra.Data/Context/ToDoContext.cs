@@ -37,6 +37,5 @@ namespace ToDo.Infra.Data.Context
 				modelBuilder.Entity(item).Ignore(nameof(Notifiable.Notifications));
 			}
 		}
-
 	}
 }

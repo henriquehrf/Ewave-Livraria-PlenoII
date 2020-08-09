@@ -11,12 +11,12 @@ namespace ToDo.Infra.Shared.ObjectMapper
 																				  nome: objModel.Nome,
 																				  endereco: objModel.Endereco,
 																				  cpf: objModel.Cpf,
-																				  idInstituicaoEnsino: objModel.IdInstrituicaoEnsino,
+																				  idInstituicaoEnsino: objModel.InstituicaoEnsinoId,
 																				  telefone: objModel.Telefone,
 																				  email: objModel.Email,
 																				  login: objModel.Login,
 																				  senha: objModel.Senha,
-																				  dataMinimaProximoEmprestimo: objModel.DataProxEmprestimo
+																				  dataSuspencao: objModel.DataSuspencao
 																				  );
 
 		public static UsuarioModel ToModel(this Usuario objRepository) => new UsuarioModel()
@@ -25,12 +25,13 @@ namespace ToDo.Infra.Shared.ObjectMapper
 			Nome = objRepository.Nome.ToString(),
 			Endereco = objRepository.Endereco.ToString(),
 			Cpf = objRepository.Cpf.ToString(),
-			IdInstrituicaoEnsino = objRepository.IdInstituicaoEnsino,
+			InstituicaoEnsinoId = objRepository.IdInstituicaoEnsino,
+			InstituicaoEnsinoDescricao = objRepository.InstituicaoEnsino?.Nome.ToString(),
 			Telefone = objRepository.Telefone.ToString(),
 			Email = objRepository.Email.ToString(),
 			Login = objRepository.Login,
 			Senha = objRepository.Senha,
-			DataProxEmprestimo = objRepository.DataMinimaProximoEmprestimo
+			DataSuspencao = objRepository.DataSuspencao,
 		};
 
 		public static IEnumerable<UsuarioModel> ToEnumerableModel(this IList<Usuario> list) => new List<UsuarioModel>(list.Select(obj => ToModel(obj)));

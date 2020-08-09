@@ -14,7 +14,7 @@ namespace ToDo.Domain.Entities
 					   Email email,
 					   string login,
 					   string senha,
-					   DateTime? dataMinimaProximoEmprestimo,
+					   DateTime? dataSuspencao,
 					   int idInstituicaoEnsino)
 		{
 			Id = id;
@@ -25,7 +25,7 @@ namespace ToDo.Domain.Entities
 			Email = email;
 			Login = login;
 			Senha = senha;
-			DataMinimaProximoEmprestimo = dataMinimaProximoEmprestimo;
+			DataSuspencao = dataSuspencao;
 			IdInstituicaoEnsino = idInstituicaoEnsino;
 
 			AddNotifications(
@@ -43,7 +43,7 @@ namespace ToDo.Domain.Entities
 		public Email Email { get; }
 		public string Login { get; }
 		public string Senha { get; }
-		public DateTime? DataMinimaProximoEmprestimo { get; }
+		public DateTime? DataSuspencao { get; }
 
 		public int IdInstituicaoEnsino { get; }
 

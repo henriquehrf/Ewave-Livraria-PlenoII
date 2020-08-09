@@ -7,8 +7,9 @@ namespace ToDo.Domain.Interfaces.Service
 	{
 		void Inserir(UsuarioModel usuario);
 		void Alterar(UsuarioModel usuario);
-		void Excluir(UsuarioModel usuario);
+		void Excluir(int id);
 		UsuarioModel UsuarioPorLogin(string login);
+		IEnumerable<UsuarioModel> BuscarUsuarioPorNome(string nome);
 		IEnumerable<UsuarioModel> TodosUsuarios();
 	}
 }

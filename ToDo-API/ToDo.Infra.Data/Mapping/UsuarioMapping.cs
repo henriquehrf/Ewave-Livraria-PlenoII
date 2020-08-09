@@ -51,7 +51,7 @@ namespace ToDo.Infra.Data.Mapping
 			  .HasColumnName("Senha")
 			  .HasColumnType("varchar(100)");
 
-			builder.Property(prop => prop.DataMinimaProximoEmprestimo)
+			builder.Property(prop => prop.DataSuspencao)
 			  .HasColumnName("DataMinimaProximoEmprestimo")
 			  .HasColumnType("datetime");
 

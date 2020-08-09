@@ -7,7 +7,7 @@ using ToDo.Domain.Models;
 namespace ToDo.Application.Controllers
 {
 	[ApiController]
-	[Authorize("Bearer")]
+	//[Authorize("Bearer")]
 	[Route("api/usuario")]
 	public class UsuarioController : Controller
 	{
@@ -21,6 +21,21 @@ namespace ToDo.Application.Controllers
 			{
 				var usuario = _usuarioService.TodosUsuarios();
 				return Ok(usuario);
+			}
+			catch (Exception ex)
+			{
+
+				return BadRequest(ex);
+			}
+		}
+
+		[HttpGet("{nome}")]
+		public IActionResult RetornarUsuarioPeloNome(string nome)
+		{
+			try
+			{
+				var usuarios = _usuarioService.BuscarUsuarioPorNome(nome);
+				return Ok(usuarios);
 			}
 			catch (Exception ex)
 			{
@@ -59,12 +74,12 @@ namespace ToDo.Application.Controllers
 			}
 		}
 
-		[HttpDelete]
-		public IActionResult Excluir([FromBody] UsuarioModel usuarioModel)
+		[HttpDelete("{id}")]
+		public IActionResult Excluir(int id)
 		{
 			try
 			{
-				_usuarioService.Excluir(usuarioModel);
+				_usuarioService.Excluir(id);
 
 				return Ok();
 			}

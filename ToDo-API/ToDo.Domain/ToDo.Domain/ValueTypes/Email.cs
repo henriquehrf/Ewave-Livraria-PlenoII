@@ -27,7 +27,7 @@ namespace ToDo.Domain.ValueTypes
 			bool ehUmFinalValido = (_valor.EndsWith(".com") || _valor.EndsWith(".com.br"));
 			bool contemArroba = _valor.Contains("@");
 
-			if (contemArroba && ehUmFinalValido)
+			if (!contemArroba || !ehUmFinalValido)
 				return AdicionarNotificacao("Formato de email inválido!");
 
 			return true;
