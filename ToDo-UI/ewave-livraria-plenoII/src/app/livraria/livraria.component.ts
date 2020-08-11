@@ -18,7 +18,7 @@ export class LivrariaComponent implements OnInit {
 
     ngOnInit(): void {
         this.carregarDados();
-        interval(1000 * 5).subscribe(i => this.carregarDados())
+        interval(1000 * 60).subscribe(i => this.carregarDados())
     };
 
     receberValorMenu(valor) {

@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
 using ToDo.Domain.Interfaces.Service;
+using Microsoft.AspNetCore.Authorization;
 namespace ToDo.Application.Controllers
 {
 	[ApiController]
-	[Authorize("Bearer")]
 	[Route("api/imagem")]
 	public class ImagemControllers : Controller
 	{
@@ -19,6 +18,7 @@ namespace ToDo.Application.Controllers
 		}
 
 		[HttpPost]
+		[Authorize("Bearer")]
 		public IActionResult SalvarImagem([FromForm] IFormFile file)
 		{
 			try
@@ -49,6 +49,7 @@ namespace ToDo.Application.Controllers
 		}
 
 		[HttpDelete("{guid}")]
+		[Authorize("Bearer")]
 		public IActionResult RemoverImagem(string guid)
 		{
 			try
