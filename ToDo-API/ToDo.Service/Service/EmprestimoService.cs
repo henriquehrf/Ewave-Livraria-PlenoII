@@ -28,36 +28,33 @@ namespace ToDo.Service.Service
 		{
 			var usuario = _usuarioRepository.UsuarioPorId(emprestimo.IdUsuario);
 			var usuarioEstaSuspenso = (usuario.DataSuspencao > DateTime.Now);
-			if (usuarioEstaSuspenso)
-			{
-				_notificationContext.AddNotification("Suspensao", "Usuário encontra-se suspenso!");
-				return;
-			}
-
 			var livro = _livroRepository.ById(emprestimo.IdLivro);
+			ValidarEmprestimo(usuario, usuarioEstaSuspenso, livro);
+
+			if (_notificationContext.Valid)
+			{
+				emprestimo.DataEmprestimo = DateTime.Now;
+				emprestimo.DataPrevistaDevolucao = DateTime.Now.AddDays(30);
+				emprestimo.Status = StatusEmprestimoEnum.Aberto.GetHashCode();
+				emprestimo.IdUsuario = usuario.Id;
+				livro.Disponibilidade = false;
+
+
+				_emprestimoRepository.Inserir(emprestimo);
+				_livroRepository.Alterar(livro);
+			}
+		}
+
+		private void ValidarEmprestimo(UsuarioModel usuario, bool usuarioEstaSuspenso, LivroModel livro)
+		{
+			if (usuarioEstaSuspenso)
+				_notificationContext.AddNotification("Suspensao", "Usuário encontra-se suspenso!");
 
 			if (!livro.Disponibilidade)
-			{
 				_notificationContext.AddNotification("Indisponivel", "Livro encontra-se indisponível, atualize a págine e tente novamente!");
-				return;
-			}
 
 			if (_emprestimoRepository.TodosEmprestimoAtivo(usuario.Id).Count() >= 2)
-			{
-				_notificationContext.AddNotification("Limite de Emprestimo", "Este usuário já possui o limite de emprestimo!");
-				return;
-			}
-
-			emprestimo.DataEmprestimo = DateTime.Now;
-			emprestimo.DataPrevistaDevolucao = DateTime.Now.AddDays(30);
-			emprestimo.Status = StatusEmprestimoEnum.Aberto.GetHashCode();
-			emprestimo.IdUsuario = usuario.Id;
-			livro.Disponibilidade = false;
-
-
-			_emprestimoRepository.Inserir(emprestimo);
-			_livroRepository.Alterar(livro);
-
+				_notificationContext.AddNotification("Limite de Emprestimo", "Este usuário já atingiu o limite de emprestimo!");
 		}
 
 		public EmprestimoModel ById(int id) => _emprestimoRepository.ById(id);

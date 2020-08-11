@@ -24,12 +24,23 @@ namespace ToDo.Service.Service
 		{
 			_notificationContext.AddNotifications(usuario.ToEntity().Notifications);
 
-			if (!_notificationContext.Invalid)
+			ValidarCadastro(usuario);
+
+			if (_notificationContext.Valid)
 				_usuarioRepository.Inserir(usuario);
 		}
+
+		private void ValidarCadastro(UsuarioModel usuario)
+		{
+			if (string.IsNullOrWhiteSpace(usuario.Email) && string.IsNullOrWhiteSpace(usuario.Telefone))
+				_notificationContext.AddNotification("Cadastro sem contato", "Para efetuar o cadastro de usuário deve informar Email e/ou Telefone!");
+		}
+
 		public void Alterar(UsuarioModel usuario)
 		{
 			_notificationContext.AddNotifications(usuario.ToEntity().Notifications);
+
+			ValidarCadastro(usuario);
 
 			if (!_notificationContext.Invalid)
 				_usuarioRepository.Alterar(usuario);
