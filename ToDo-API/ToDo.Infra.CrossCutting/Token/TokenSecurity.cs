@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Text;
+using ToDo.Domain.Interfaces.Service;
 using ToDo.Domain.Models;
 
 namespace ToDo.Infra.CrossCutting.Token
@@ -12,25 +15,25 @@ namespace ToDo.Infra.CrossCutting.Token
 	{
 		public static void ConfigureToken(this IServiceCollection services, IConfiguration configuration)
 		{
-			var loginConfigurations = new LoginConfiguration();
-			services.AddSingleton(loginConfigurations);
-			TokenConfigurationModel tokenConfigurations = RetornarTokenConfiguration(configuration);
+			var tokenConfigurations = RetornarTokenConfiguration(configuration);
 			services.AddSingleton(tokenConfigurations);
 
-			services.AddAuthentication(authOptions =>
-			{
-				authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-				authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-			}).AddJwtBearer(bearerOptions =>
-			{
-				var parametroValidacao = bearerOptions.TokenValidationParameters;
-				parametroValidacao.ValidAudience = tokenConfigurations.Audience;
-				parametroValidacao.IssuerSigningKey = loginConfigurations.Key;
-				parametroValidacao.ValidateIssuerSigningKey = true;
-				parametroValidacao.ValidIssuer = tokenConfigurations.Issuer;
-				parametroValidacao.ClockSkew = TimeSpan.Zero;
-				parametroValidacao.ValidateLifetime = true;
-			});
+			services.AddAuthentication
+				 (JwtBearerDefaults.AuthenticationScheme)
+				 .AddJwtBearer(options =>
+				 {
+					 options.TokenValidationParameters = new TokenValidationParameters
+					 {
+						 ValidateIssuer = true,
+						 ValidateAudience = true,
+						 ValidateLifetime = true,
+						 ValidateIssuerSigningKey = true,
+						 ValidIssuer = tokenConfigurations.Issuer,
+						 ValidAudience = tokenConfigurations.Audience,
+						 IssuerSigningKey = new SymmetricSecurityKey
+					   (Encoding.UTF8.GetBytes(tokenConfigurations.Key))
+					 };
+				 });
 
 			services.AddAuthorization(auth =>
 			{
@@ -40,10 +43,10 @@ namespace ToDo.Infra.CrossCutting.Token
 			});
 		}
 
-		private static TokenConfigurationModel RetornarTokenConfiguration(IConfiguration configuration)
+		private static ITokenConfiguration RetornarTokenConfiguration(IConfiguration configuration)
 		{
-			var tokenConfigurations = new TokenConfigurationModel();
-			new ConfigureFromConfigurationOptions<TokenConfigurationModel>(
+			var tokenConfigurations = new TokenConfiguration();
+			new ConfigureFromConfigurationOptions<ITokenConfiguration>(
 				configuration.GetSection("TokenConfigurations"))
 					.Configure(tokenConfigurations);
 			return tokenConfigurations;

@@ -7,7 +7,7 @@ using ToDo.Domain.Models;
 namespace ToDo.Application.Controllers
 {
 	[ApiController]
-	//[Authorize("Bearer")]
+	[Authorize("Bearer")]
 	[Route("api/usuario")]
 	public class UsuarioController : Controller
 	{

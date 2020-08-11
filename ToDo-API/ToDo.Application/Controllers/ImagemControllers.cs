@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
@@ -6,7 +7,7 @@ using ToDo.Domain.Interfaces.Service;
 namespace ToDo.Application.Controllers
 {
 	[ApiController]
-	//[Authorize("Bearer")]
+	[Authorize("Bearer")]
 	[Route("api/imagem")]
 	public class ImagemControllers : Controller
 	{

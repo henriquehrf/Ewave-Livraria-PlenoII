@@ -38,7 +38,7 @@ namespace ToDo.Application
 			services.AddNotificationDependency();
 			services.ConfigureToken(Configuration);
 
-			
+
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -55,6 +55,8 @@ namespace ToDo.Application
 				.AllowAnyMethod()
 				.AllowAnyHeader());
 			app.UseMvc();
+			app.UseHttpsRedirection();
+			app.UseAuthentication();
 
 		}
 	}

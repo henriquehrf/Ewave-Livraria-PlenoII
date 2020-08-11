@@ -15,11 +15,9 @@ namespace ToDo.Application.Controllers
 		[AllowAnonymous]
 		[HttpPost]
 		public IActionResult EfetuarLogin(
-			[FromBody] CredenciaisModel credenciais,
-			[FromServices] TokenConfigurationModel tokenConfigurations)
+			[FromBody] CredenciaisModel credenciais)
 		{
-
-			return Ok(_loginService.EfetuarLogin(credenciais, tokenConfigurations));
+			return Ok(_loginService.EfetuarLogin(credenciais));
 		}
 	}
 }

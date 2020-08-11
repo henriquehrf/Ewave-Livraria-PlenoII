@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace ToDo.Application.Controllers
 {
 	[ApiController]
-	//[Authorize("Bearer")]
+	[Authorize("Bearer")]
 	[Route("api/instituicao-ensino")]
 	public class InstituicaoEnsinoController : Controller
 	{

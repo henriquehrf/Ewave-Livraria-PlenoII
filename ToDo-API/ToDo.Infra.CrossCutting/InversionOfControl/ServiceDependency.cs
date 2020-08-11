@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using ToDo.Domain.Interfaces.Service;
+using ToDo.Domain.Models;
 using ToDo.Infra.CrossCutting.Token;
 using ToDo.Service.Service;
 
@@ -14,7 +16,6 @@ namespace ToDo.Infra.CrossCutting.InversionOfControl
 			services.AddScoped<ILivroService, LivroService>();
 			services.AddScoped<IEmprestimoService, EmprestimoService>();
 			services.AddScoped<ILoginService, LoginService>();
-			services.AddScoped<IToken, LoginConfiguration>();
 			services.AddScoped<IImagemService, ImagemService>();
 		}
 	}

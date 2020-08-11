@@ -4,6 +4,6 @@ namespace ToDo.Domain.Interfaces.Service
 {
 	public interface ILoginService
 	{
-		object EfetuarLogin(CredenciaisModel credenciais, TokenConfigurationModel tokenConfigurationModel);
+		object EfetuarLogin(CredenciaisModel credenciais);
 	}
 }

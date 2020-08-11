@@ -3,6 +3,7 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;
+using System.Text;
 using ToDo.Domain.Interfaces.Service;
 using ToDo.Domain.Models;
 
@@ -11,15 +12,15 @@ namespace ToDo.Service.Service
 	public class LoginService : ILoginService
 	{
 		private readonly IUsuarioService _usuarioService;
-		private readonly IToken _tokenService;
+		private readonly ITokenConfiguration _tokenConfiguration;
 
-		public LoginService(IUsuarioService usuarioService, IToken tokenService)
+		public LoginService(IUsuarioService usuarioService, ITokenConfiguration tokenConfiguration)
 		{
 			_usuarioService = usuarioService;
-			_tokenService = tokenService;
+			_tokenConfiguration = tokenConfiguration;
 		}
 
-		public object EfetuarLogin(CredenciaisModel credenciais, TokenConfigurationModel tokenConfigurationModel)
+		public object EfetuarLogin(CredenciaisModel credenciais)
 		{
 			var usuarioBase = _usuarioService.UsuarioPorLogin(credenciais.Usuario);
 
@@ -41,21 +42,25 @@ namespace ToDo.Service.Service
 						new Claim("perfil", usuarioBase.TipoUsuarioDescricao),
 				}
 			);
-			;
 
-			var dataHoraExpiracao = RetornarDataExpiracaoToken(tokenConfigurationModel.TempoEmSegundos);
+			var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenConfiguration.Key));
+			var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+			var issuer = _tokenConfiguration.Issuer;
+			var audience = _tokenConfiguration.Audience;
+
+			var dataHoraExpiracao = RetornarDataExpiracaoToken(_tokenConfiguration.LifeTimeSeconds);
 			var handler = new JwtSecurityTokenHandler();
 			var securityToken = handler.CreateToken(new SecurityTokenDescriptor
 			{
-				Issuer = tokenConfigurationModel.Issuer,
-				Audience = tokenConfigurationModel.Audience,
-				SigningCredentials = _tokenService.Credentials,
+				Issuer = issuer,
+				Audience = audience,
+				SigningCredentials = credentials,
 				Subject = identity,
 				NotBefore = DateTime.Now,
 				Expires = dataHoraExpiracao
+
 			});
 			var token = handler.WriteToken(securityToken);
-
 			return new
 			{
 				authenticated = true,
