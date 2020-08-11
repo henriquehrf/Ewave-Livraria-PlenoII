@@ -7,11 +7,12 @@ import { Component, Input } from '@angular/core';
 export class LivrariaComponent {
 
     @Input() menuSelecionado: string;
-    constructor(){
+
+    constructor() {
     }
 
-
-    receberValorMenu(valor){
+    receberValorMenu(valor) {
         this.menuSelecionado = valor;
     }
+
 }

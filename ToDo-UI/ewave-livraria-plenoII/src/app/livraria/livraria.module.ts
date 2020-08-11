@@ -6,7 +6,8 @@ import { RouterModule } from '@angular/router';
 import { HeaderModule } from '../header/header.module';
 import { InstituicoesEnsinoModule } from '../instituicoes-ensino/instituicoes-ensino.module';
 import { UsuariosModule } from 'app/usuarios/usuarios.module';
-
+import { LivroListModule } from 'app/livros/livro-list/livro-list.module';
+import { EmprestimoModule } from 'app/emprestimos/emprestimo.module';
 
 @NgModule({
     declarations: [LivrariaComponent],
@@ -16,7 +17,9 @@ import { UsuariosModule } from 'app/usuarios/usuarios.module';
         RouterModule,
         HeaderModule,
         InstituicoesEnsinoModule,
-        UsuariosModule
+        UsuariosModule,
+        LivroListModule,
+        EmprestimoModule
     ],
     exports: [ LivrariaComponent ]
 })

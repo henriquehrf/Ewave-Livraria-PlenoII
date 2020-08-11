@@ -66,16 +66,6 @@ export class InstituicaoEnsinoComponent implements OnInit {
     this.instituicao = { id: 0, nome: "", cnpj: "", telefone: "", endereco: "" };
   }
 
-  /*   carregarDropdonw() {
-      this.instituicaoEnsinoService.retornarTodasInstituicaoEnsino().subscribe(
-        (response) => {
-          return this.instituicoesDeEnsino.next(response);
-        },
-        (err) => {
-          alert(err);
-        }
-      )
-    } */
 
   voltar() {
     this.limparFormulario();

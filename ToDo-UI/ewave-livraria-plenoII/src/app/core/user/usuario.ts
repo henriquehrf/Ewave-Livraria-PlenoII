@@ -1,5 +1,6 @@
 export interface User {
+   id:number
    unique_name: string,
-   Nome:string,
-   Perfil: string
+   nome: string,
+   perfil: string
 }

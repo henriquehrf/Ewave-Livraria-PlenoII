@@ -6,3 +6,10 @@
 
 <todo-usuario-list [hidden]="!(menuSelecionado == 'usuario-list')" (menuSelecionado)="receberValorMenu($event)">
 </todo-usuario-list>
+
+<todo-livro-list  [hidden]="!(menuSelecionado == 'livro-list')" (menuSelecionado)="receberValorMenu($event)">
+</todo-livro-list>
+
+<todo-emprestimo [hidden]="!(menuSelecionado == 'emprestimo')" (menuSelecionado)="receberValorMenu($event)">
+
+</todo-emprestimo>

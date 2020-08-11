@@ -1,4 +1,4 @@
-<div [hidden]="exibeFormularioNovo">
+<div [hidden]="exibeFormularioNovo" class="container-fluid">
     <div class="input-group m-4">
         <button class="btn btn-primary mr-2" (click)="novo()">Novo</button>
         <todo-search (textoPesquisado)="preencherTermoPesquisa($event)"></todo-search>
@@ -32,7 +32,7 @@
     </table>
 </div>
 
-<div [hidden]="!exibeFormularioNovo">
+<div [hidden]="!exibeFormularioNovo" class="container-fluid">
     <todo-instituicao-ensino (exibeMenuNovo)="voltar()" [instituicao]="instituicaoSelecionada">
     </todo-instituicao-ensino>
 </div>
