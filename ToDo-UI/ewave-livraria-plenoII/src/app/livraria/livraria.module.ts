@@ -8,6 +8,8 @@ import { InstituicoesEnsinoModule } from '../instituicoes-ensino/instituicoes-en
 import { UsuariosModule } from 'app/usuarios/usuarios.module';
 import { LivroListModule } from 'app/livros/livro-list/livro-list.module';
 import { EmprestimoModule } from 'app/emprestimos/emprestimo.module';
+import { MomentModule } from 'angular2-moment';
+
 
 @NgModule({
     declarations: [LivrariaComponent],
@@ -19,8 +21,9 @@ import { EmprestimoModule } from 'app/emprestimos/emprestimo.module';
         InstituicoesEnsinoModule,
         UsuariosModule,
         LivroListModule,
-        EmprestimoModule
+        EmprestimoModule,
+        MomentModule
     ],
-    exports: [ LivrariaComponent ]
+    exports: [LivrariaComponent]
 })
 export class LivrariaModule { }

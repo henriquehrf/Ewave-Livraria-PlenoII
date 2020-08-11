@@ -1,9 +1,9 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../core/user/usuario';
 import { UserService } from 'app/core/user/usuario.service';
-import { Router } from '@angular/router';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { EmprestimoService } from './emprestimo.service';
+import { Emprestimo } from './emprestimo';
 
 @Component({
     selector: 'todo-emprestimo',
@@ -11,13 +11,13 @@ import { EmprestimoService } from './emprestimo.service';
 })
 export class EmprestimoComponent implements OnInit {
 
-    private emprestimos = new BehaviorSubject<any>(null);
+    private emprestimos = new BehaviorSubject<Emprestimo>(null);
     user$: Observable<User>;
-
 
     constructor(private emprestimoService: EmprestimoService, private userService: UserService) {
         this.user$ = userService.getUser();
     }
+    
     ngOnInit(): void {
         this.buscarDados();
     }
@@ -25,9 +25,9 @@ export class EmprestimoComponent implements OnInit {
     buscarDados() {
         this.user$.subscribe(
             (usuario) => {
-                this.emprestimoService.retornarEmprestimosPorIdUsuario(usuario.id).subscribe(
+                this.emprestimoService.retornarEmprestimosAtivoPorIdUsuario(usuario.id).subscribe(
                     (response) => {
-                        this.emprestimos.next(response);
+                        this.emprestimos.next(response as Emprestimo);
                     },
                     err => {
                         alert(err);

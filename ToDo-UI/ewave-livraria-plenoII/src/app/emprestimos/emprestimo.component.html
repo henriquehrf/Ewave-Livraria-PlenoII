@@ -1,5 +1,8 @@
 <div class="container-fluid">
-    <div class="row m-4">
+    <div class="input-group m-4">
+        <button class="btn btn-dark mr-2" (click)="buscarDados()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+    </div>
+    <div class="row m-4" *ngIf="(emprestimos | async)?.length > 0;else usuarioSemEmprestimo">
         <div class="col-md-4 p-2" apDarkenOnHover style="border: 1px solid black; border-radius: 25px;"
             *ngFor="let emprestimo of emprestimos | async">
             <img src="https://localhost:44350/api/imagem/{{emprestimo.livro.guidCapa}}" class="rounded float-left"
@@ -22,11 +25,17 @@
                 <strong>Data Emprestimo: </strong>{{emprestimo.dataEmprestimo | date:"dd/MM/yyyy" }}
             </div>
             <div style="word-wrap: break-word;">
-                <strong>Data Limite Devolução: </strong>{{emprestimo.dataPrevistaDevolucao | date:"dd/MM/yyyy"}}
+                <strong>Data Prevista Devolução: </strong>{{emprestimo.dataPrevistaDevolucao | date:"dd/MM/yyyy"}}
             </div>
             <div class="mt-2">
                 <button class="btn btn-dark mr-4" (click)="devolver(emprestimo)">Devolver</button>
-            </div> 
+            </div>
         </div>
     </div>
+    <ng-template #usuarioSemEmprestimo>
+        <div class="alert alert-dark mt-4" role="alert">
+            Você não possui nenhum empréstimo ativo neste momento. Caso seu empréstimo não esteja visível,
+            <strong>clique no botão atualizar. </strong>
+        </div>
+    </ng-template>
 </div>

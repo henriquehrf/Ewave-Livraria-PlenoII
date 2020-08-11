@@ -18,6 +18,7 @@ export class EmprestimoService {
         return this.http.post(API_URL + '/api/imagem', formData);
 
     }
+
     emprestarLivro(emprestimo2: Emprestimo) {
         const emprestimo = new FormData();
         emprestimo.append('idUsuario', emprestimo2.idUsuario.toString());
@@ -30,10 +31,17 @@ export class EmprestimoService {
             );
     }
 
-    retornarEmprestimosPorIdUsuario(id) {
+    retornarEmprestimosAtivoPorIdUsuario(id) {
         return this.http
             .get(
                 API_URL + '/api/emprestimo/' + id,
+            );
+    }
+
+    retornarTodosEmprestimoAtivo() {
+        return this.http
+            .get(
+                API_URL + '/api/emprestimo/',
             );
     }
 

@@ -33,10 +33,9 @@ export class SignInComponent implements OnInit {
             .subscribe(
                 () => this.router.navigate(['home']),
                 err => {
-                    console.log(err);
                     this.loginForm.reset();
                     this.userNameInput.nativeElement.focus();
-                    alert('Invalid user name or password');
+                    alert('Usuário e/ou senha esta(ão) inválido(s)!');
                 }
             );
     }
