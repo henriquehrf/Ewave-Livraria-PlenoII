@@ -15,6 +15,7 @@ namespace ToDo.Infra.CrossCutting.InversionOfControl
 			services.AddScoped<IEmprestimoService, EmprestimoService>();
 			services.AddScoped<ILoginService, LoginService>();
 			services.AddScoped<IToken, LoginConfiguration>();
+			services.AddScoped<IImagemService, ImagemService>();
 		}
 	}
 }

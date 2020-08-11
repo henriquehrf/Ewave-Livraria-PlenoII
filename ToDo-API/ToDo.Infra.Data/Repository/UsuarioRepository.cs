@@ -36,5 +36,8 @@ namespace ToDo.Infra.Data.Repository
 
 			return Todos().Where(t=>t.Nome.ToString().ToLowerInvariant().Contains(nome.ToLowerInvariant())).ToList().ToEnumerableModel();
 		}
+
+		public UsuarioModel UsuarioPorId(int id) => base.ById(id).ToModel();
+		
 	}
 }

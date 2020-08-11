@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -24,7 +25,7 @@ namespace ToDo.Infra.Data.Repository
 
 		protected virtual void Alterar(T obj)
 		{
-			_toDoContext.Entry(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+			_toDoContext.Entry(obj).State = EntityState.Modified;
 			_toDoContext.SaveChanges();
 		}
 
@@ -38,7 +39,14 @@ namespace ToDo.Infra.Data.Repository
 
 		protected virtual IList<T> Filter(Expression<Func<T, bool>> predicate) => _toDoContext.Set<T>().Where(predicate).ToList();
 
-		protected virtual T ById(int id) =>
-			_toDoContext.Set<T>().Find(id);
+		protected virtual T ById(int id)
+		{
+			var obj = _toDoContext.Set<T>().Find(id);
+			if(obj != null)
+				_toDoContext.Entry<T>(obj).State = EntityState.Detached;
+
+			return obj;
+		}
+			
 	}
 }

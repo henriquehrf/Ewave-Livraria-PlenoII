@@ -14,6 +14,9 @@ namespace ToDo.Infra.Data.Context
 		}
 
 		public DbSet<Usuario> Usuarios { get; set; }
+		public DbSet<Livro> Livros { get; set; }
+		public DbSet<Emprestimo> Emprestimos { get; set; }
+		public DbSet<InstituicaoEnsino> InstituicaoEnsinos { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
@@ -23,6 +26,7 @@ namespace ToDo.Infra.Data.Context
 			modelBuilder.Entity<InstituicaoEnsino>(new InstituicaoEnsinoMapping().Configure);
 			modelBuilder.Entity<Livro>(new LivroMapping().Configure);
 			modelBuilder.Entity<Emprestimo>(new EmprestimoMapping().Configure);
+			modelBuilder.Entity<Imagem>(new ImagemMapping().Configure);
 
 
 			var entites = Assembly

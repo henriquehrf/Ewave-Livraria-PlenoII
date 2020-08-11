@@ -36,8 +36,9 @@ namespace ToDo.Service.Service
 				new GenericIdentity(credenciais.Usuario, "Login"),
 				new[] {
 						new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),
-						new Claim("Nome", usuarioBase.Nome),
-						new Claim("Perfil", usuarioBase.TipoUsuarioDescricao),
+						new Claim("id", usuarioBase.Id.ToString()),
+						new Claim("nome", usuarioBase.Nome),
+						new Claim("perfil", usuarioBase.TipoUsuarioDescricao),
 				}
 			);
 			;

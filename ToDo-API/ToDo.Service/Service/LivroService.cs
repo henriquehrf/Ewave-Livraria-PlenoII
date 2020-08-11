@@ -23,5 +23,7 @@ namespace ToDo.Service.Service
 		public LivroModel ById(int id) => _livroRepository.ById(id);
 
 		public IEnumerable<LivroModel> Todos() => _livroRepository.Todos();
+
+		public IEnumerable<LivroModel> BuscarLivroPorTitulo(string titulo) => _livroRepository.BuscarLivroPorTitulo(titulo);
 	}
 }

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace ToDo.Application.Controllers
 {
 	[ApiController]
-	[Authorize("Bearer")]
+	//[Authorize("Bearer")]
 	[Route("api/emprestimo")]
 	public class EmprestimoController : Controller
 	{
@@ -16,11 +16,11 @@ namespace ToDo.Application.Controllers
 		public EmprestimoController(IEmprestimoService emprestimoService) => _emprestimoService = emprestimoService;
 
 		[HttpGet("{idUsuario}")]
-		public IActionResult RetornarTodosEmprestimoPorUsuario([FromRoute] int idUsuario)
+		public IActionResult RetornarTodosEmprestimoAtivoPorUsuario([FromRoute] int idUsuario)
 		{
 			try
 			{
-				return Ok(_emprestimoService.TodosPorUsuario(idUsuario));
+				return Ok(_emprestimoService.TodosEmprestimoAtivoPorUsuario(idUsuario));
 			}
 			catch (Exception ex)
 			{
@@ -28,12 +28,12 @@ namespace ToDo.Application.Controllers
 			}
 		}
 
-		[HttpPost]
-		public IActionResult Cadastrar([FromBody] EmprestimoModel emprestimoModel)
+		[HttpPost()]
+		public IActionResult Cadastrar([FromBody] EmprestimoModel emprestimo)
 		{
 			try
 			{
-				_emprestimoService.Inserir(emprestimoModel);
+				_emprestimoService.Inserir(emprestimo);
 
 				return Ok();
 			}

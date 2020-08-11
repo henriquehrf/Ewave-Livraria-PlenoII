@@ -9,5 +9,6 @@ namespace ToDo.Domain.Interfaces.Service
 		void Alterar(LivroModel livro);
 		LivroModel ById(int id);
 		IEnumerable<LivroModel> Todos();
+		IEnumerable<LivroModel> BuscarLivroPorTitulo(string titulo);
 	}
 }

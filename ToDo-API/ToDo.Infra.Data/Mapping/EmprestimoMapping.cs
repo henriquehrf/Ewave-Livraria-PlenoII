@@ -27,6 +27,11 @@ namespace ToDo.Infra.Data.Mapping
 			   .HasColumnName("DataDevolucao")
 			   .HasColumnType("Datetime");
 
+			builder.Property(prop => prop.DataPrevistaDevolucao)
+				.IsRequired()
+			   .HasColumnName("DataPrevistaDevolucao")
+			   .HasColumnType("Datetime");
+
 			builder.Property(prop => prop.DataEmprestimo)
 				.IsRequired()
 				.HasColumnName("DataEmprestimo")

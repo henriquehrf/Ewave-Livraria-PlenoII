@@ -8,7 +8,7 @@ namespace ToDo.Domain.Interfaces.Service
 		void Inserir(EmprestimoModel emprestimo);
 		void Devolver(EmprestimoModel emprestimo);
 		EmprestimoModel ById(int id);
-		IEnumerable<EmprestimoModel> TodosPorUsuario(int idUsuario);
+		IEnumerable<EmprestimoModel> TodosEmprestimoAtivoPorUsuario(int idUsuario);
 		IEnumerable<EmprestimoModel> Todos();
 	}
 }

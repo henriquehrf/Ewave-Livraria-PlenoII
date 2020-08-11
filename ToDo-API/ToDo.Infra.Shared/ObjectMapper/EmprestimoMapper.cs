@@ -11,6 +11,7 @@ namespace ToDo.Infra.Shared.ObjectMapper
 																						   idUsuario: objModel.IdUsuario,
 																						   idLivro: objModel.IdLivro,
 																						   dataDevolucao: objModel.DataDevolucao,
+																						   dataPrevistaDevolucao: objModel.DataPrevistaDevolucao,
 																						   dataEmprestimo: objModel.DataEmprestimo,
 																						   status: objModel.Status);
 
@@ -20,8 +21,11 @@ namespace ToDo.Infra.Shared.ObjectMapper
 			IdUsuario = objRepository.IdUsuario,
 			IdLivro = objRepository.IdLivro,
 			DataDevolucao = objRepository.DataDevolucao,
+			DataPrevistaDevolucao = objRepository.DataPrevistaDevolucao,
 			DataEmprestimo = objRepository.DataEmprestimo,
-			Status = objRepository.Status
+			Status = objRepository.Status,
+			Usuario = objRepository.Usuario.ToModel(),
+			Livro = objRepository.Livro.ToModel()
 		};
 
 		public static IEnumerable<EmprestimoModel> ToEnumerableModel(this IList<Emprestimo> list) => new List<EmprestimoModel>(list.Select(obj => ToModel(obj)));

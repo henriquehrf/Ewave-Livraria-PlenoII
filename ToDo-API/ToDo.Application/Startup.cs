@@ -24,6 +24,7 @@ namespace ToDo.Application
 		{
 			services.AddCors();
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+			services.AddControllers().AddNewtonsoftJson();
 
 			services.AddMvc(config =>
 			{

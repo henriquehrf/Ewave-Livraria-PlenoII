@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 using ToDo.Domain.Entities;
 using ToDo.Domain.Interfaces;
 using ToDo.Domain.Models;
@@ -18,7 +20,14 @@ namespace ToDo.Infra.Data.Repository
 		public void Alterar(EmprestimoModel emprestimo) => base.Alterar(emprestimo.ToEntity());
 
 		EmprestimoModel IEmprestimoRepository.ById(int id) => base.ById(id).ToModel();
-		public IEnumerable<EmprestimoModel> TodosPorUsuario(int idUsuario) => Filter(t => t.IdUsuario == idUsuario).ToEnumerableModel();
+		public IEnumerable<EmprestimoModel> TodosEmprestimoAtivoPorUsuario(int idUsuario)
+		{
+			return _toDoContext.Emprestimos.Include(e => e.Livro)
+											.Include(e => e.Usuario)
+											.Where(e => e.IdUsuario == idUsuario && e.Status == 1).ToList().ToEnumerableModel();
+
+		}
+
 
 		IEnumerable<EmprestimoModel> IEmprestimoRepository.Todos() => base.Todos().ToEnumerableModel();
 	}

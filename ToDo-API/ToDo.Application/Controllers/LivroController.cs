@@ -7,7 +7,7 @@ using ToDo.Domain.Models;
 namespace ToDo.Application.Controllers
 {
 	[ApiController]
-	[Authorize("Bearer")]
+	//[Authorize("Bearer")]
 	[Route("api/livro")]
 	public class LivroController : Controller
 	{
@@ -26,6 +26,20 @@ namespace ToDo.Application.Controllers
 			catch (Exception ex)
 			{
 
+				return BadRequest(ex);
+			}
+		}
+
+		[HttpGet("{titulo}")]
+		public IActionResult BuscarLivroPorTitulo(string titulo)
+		{
+			try
+			{
+				return Ok(_livroService.BuscarLivroPorTitulo(titulo));
+
+			}
+			catch (Exception ex)
+			{
 				return BadRequest(ex);
 			}
 		}
@@ -59,6 +73,7 @@ namespace ToDo.Application.Controllers
 				return BadRequest(ex);
 			}
 		}
+
 
 	}
 }

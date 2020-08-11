@@ -35,6 +35,11 @@ namespace ToDo.Infra.Data.Mapping
 			   .HasColumnName("Sinopse")
 			   .HasColumnType("varchar(200)");
 
+			builder.Property(prop => prop.GuidCapa)
+			   .IsRequired()
+			   .HasColumnName("GuidCapa")
+			   .HasColumnType("varchar(200)");
+
 			builder.Property(prop => prop.Disponibilidade)
 			   .IsRequired()
 			   .HasColumnName("Disponibilidade")

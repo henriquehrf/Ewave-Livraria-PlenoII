@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using ToDo.Domain.Entities;
 using ToDo.Domain.Interfaces;
 using ToDo.Domain.Models;
@@ -21,5 +22,14 @@ namespace ToDo.Infra.Data.Repository
 		LivroModel ILivroRepository.ById(int id) => base.ById(id).ToModel();
 
 		IEnumerable<LivroModel> ILivroRepository.Todos() => base.Todos().ToEnumerableModel();
+
+		public IEnumerable<LivroModel> BuscarLivroPorTitulo(string titulo)
+		{
+			if (string.IsNullOrWhiteSpace(titulo)) return Todos().ToEnumerableModel();
+
+			//TODO: Investigar EF Linq Error after change from dotnet Core 2.2.6 to 3.0.0
+
+			return Todos().Where(t => t.Titulo.ToString().ToLowerInvariant().Contains(titulo.ToLowerInvariant())).ToList().ToEnumerableModel();
+		}
 	}
 }

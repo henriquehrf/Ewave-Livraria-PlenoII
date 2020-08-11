@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ToDo.Infra.Data.Context;
 
 namespace ToDo.Infra.Data.Migrations
 {
     [DbContext(typeof(ToDoContext))]
-    partial class ToDoContextModelSnapshot : ModelSnapshot
+    [Migration("20200809224749_AdicionadoColunaGuidCapaNaTabelaLivro")]
+    partial class AdicionadoColunaGuidCapaNaTabelaLivro
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,10 +34,6 @@ namespace ToDo.Infra.Data.Migrations
 
                     b.Property<DateTime>("DataEmprestimo")
                         .HasColumnName("DataEmprestimo")
-                        .HasColumnType("Datetime");
-
-                    b.Property<DateTime>("DataPrevistaDevolucao")
-                        .HasColumnName("DataPrevistaDevolucao")
                         .HasColumnType("Datetime");
 
                     b.Property<int>("IdLivro")
