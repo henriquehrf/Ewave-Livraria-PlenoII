@@ -15,12 +15,25 @@ namespace ToDo.Application.Controllers
 
 		public EmprestimoController(IEmprestimoService emprestimoService) => _emprestimoService = emprestimoService;
 
+		[HttpGet()]
+		public IActionResult RetornarTodosEmprestimo()
+		{
+			try
+			{
+				return Ok(_emprestimoService.TodosEmprestimoAtivo());
+			}
+			catch (Exception ex)
+			{
+				return BadRequest(ex);
+			}
+		}
+
 		[HttpGet("{idUsuario}")]
 		public IActionResult RetornarTodosEmprestimoAtivoPorUsuario([FromRoute] int idUsuario)
 		{
 			try
 			{
-				return Ok(_emprestimoService.TodosEmprestimoAtivoPorUsuario(idUsuario));
+				return Ok(_emprestimoService.TodosEmprestimoAtivo(idUsuario));
 			}
 			catch (Exception ex)
 			{

@@ -20,11 +20,15 @@ namespace ToDo.Infra.Data.Repository
 		public void Alterar(EmprestimoModel emprestimo) => base.Alterar(emprestimo.ToEntity());
 
 		EmprestimoModel IEmprestimoRepository.ById(int id) => base.ById(id).ToModel();
-		public IEnumerable<EmprestimoModel> TodosEmprestimoAtivoPorUsuario(int idUsuario)
+		public IEnumerable<EmprestimoModel> TodosEmprestimoAtivo(int? idUsuario=null)
 		{
 			return _toDoContext.Emprestimos.Include(e => e.Livro)
 											.Include(e => e.Usuario)
-											.Where(e => e.IdUsuario == idUsuario && e.Status == 1).ToList().ToEnumerableModel();
+											.Where(e => ((idUsuario == null) || (e.IdUsuario == idUsuario.Value)) &&
+												 e.Status == 1)
+											.OrderBy(e => e.DataEmprestimo)
+											.ToList()
+											.ToEnumerableModel();
 
 		}
 

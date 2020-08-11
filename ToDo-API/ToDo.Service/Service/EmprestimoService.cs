@@ -42,7 +42,7 @@ namespace ToDo.Service.Service
 				return;
 			}
 
-			if (_emprestimoRepository.TodosEmprestimoAtivoPorUsuario(usuario.Id).Count() >= 2)
+			if (_emprestimoRepository.TodosEmprestimoAtivo(usuario.Id).Count() >= 2)
 			{
 				_notificationContext.AddNotification("Limite de Emprestimo", "Este usuário já possui o limite de emprestimo!");
 				return;
@@ -50,7 +50,7 @@ namespace ToDo.Service.Service
 
 			emprestimo.DataEmprestimo = DateTime.Now;
 			emprestimo.DataPrevistaDevolucao = DateTime.Now.AddDays(30);
-			emprestimo.Status = 1;
+			emprestimo.Status = StatusEmprestimoEnum.Aberto.GetHashCode();
 			emprestimo.IdUsuario = usuario.Id;
 			livro.Disponibilidade = false;
 
@@ -64,19 +64,25 @@ namespace ToDo.Service.Service
 
 		public IEnumerable<EmprestimoModel> Todos() => _emprestimoRepository.Todos();
 
-		public IEnumerable<EmprestimoModel> TodosEmprestimoAtivoPorUsuario(int idUsuario) => _emprestimoRepository.TodosEmprestimoAtivoPorUsuario(idUsuario);
+		public IEnumerable<EmprestimoModel> TodosEmprestimoAtivo(int? idUsuario) => _emprestimoRepository.TodosEmprestimoAtivo(idUsuario);
 
 		public void Devolver(EmprestimoModel emprestimo)
 		{
+
 			emprestimo.DataDevolucao = DateTime.Now;
-			emprestimo.Status = 2;
+			emprestimo.Status = StatusEmprestimoEnum.Devolvido.GetHashCode();
+			_emprestimoRepository.Alterar(emprestimo);
 
 			var livro = _livroRepository.ById(emprestimo.Livro.Id);
 			livro.Disponibilidade = true;
-
-			_emprestimoRepository.Alterar(emprestimo);
 			_livroRepository.Alterar(livro);
 
+			if (emprestimo.DataPrevistaDevolucao < DateTime.Now)
+			{
+				var usuario = _usuarioRepository.UsuarioPorId(emprestimo.IdUsuario);
+				usuario.DataSuspencao = DateTime.Now.AddDays(30);
+				_usuarioRepository.Alterar(usuario);
+			}
 		}
 
 	}

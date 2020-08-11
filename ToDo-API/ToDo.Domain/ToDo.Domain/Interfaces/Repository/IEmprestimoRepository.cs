@@ -9,7 +9,7 @@ namespace ToDo.Domain.Interfaces
 		void Inserir(EmprestimoModel emprestimo);
 		void Alterar(EmprestimoModel emprestimo);
 		EmprestimoModel ById(int id);
-		IEnumerable<EmprestimoModel> TodosEmprestimoAtivoPorUsuario(int idUsuario);
+		IEnumerable<EmprestimoModel> TodosEmprestimoAtivo(int? idUsuario = null);
 		IEnumerable<EmprestimoModel> Todos();
 	}
 }
