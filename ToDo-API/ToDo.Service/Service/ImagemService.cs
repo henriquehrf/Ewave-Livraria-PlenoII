@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
 using System.Linq;
@@ -8,10 +9,15 @@ namespace ToDo.Service.Service
 {
 	public class ImagemService : IImagemService
 	{
-		private readonly string SERVER_PATH = "C:\\Images\\";
+		private readonly string _serverPath;
+
+		public ImagemService(IConfiguration configuration)
+		{
+			_serverPath = configuration["DireitorioImagens"];
+		}
 		public byte[] CarregarImagem(string guid)
 		{
-			var pathFile = string.Concat(SERVER_PATH, guid, "\\");
+			var pathFile = string.Concat(_serverPath, guid, "\\");
 
 			if (!Directory.Exists(pathFile))
 				return default;
@@ -21,7 +27,7 @@ namespace ToDo.Service.Service
 
 		public void RemoverImagem(string guid)
 		{
-			var pathFile = string.Concat(SERVER_PATH, guid.ToString(), "\\");
+			var pathFile = string.Concat(_serverPath, guid.ToString(), "\\");
 
 			if (!Directory.Exists(pathFile))
 				return;
@@ -32,7 +38,7 @@ namespace ToDo.Service.Service
 		public string SalvarImagem(IFormFile file)
 		{
 			var guid = Guid.NewGuid().ToString();
-			var pathFile = string.Concat(SERVER_PATH, guid.ToString(), "\\");
+			var pathFile = string.Concat(_serverPath, guid.ToString(), "\\");
 
 			if (!Directory.Exists(pathFile))
 				Directory.CreateDirectory(pathFile);
