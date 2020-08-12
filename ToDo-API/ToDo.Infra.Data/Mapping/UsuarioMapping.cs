@@ -55,6 +55,11 @@ namespace ToDo.Infra.Data.Mapping
 			  .HasColumnName("DataMinimaProximoEmprestimo")
 			  .HasColumnType("datetime");
 
+			builder.Property(prop => prop.PerfilUsuario)
+			  .IsRequired()
+			  .HasColumnName("PerfilUsuario")
+			  .HasColumnType("int");
+
 			builder.HasOne(prop => prop.InstituicaoEnsino)
 				.WithMany(prop => prop.Usuarios)
 				.HasPrincipalKey(prop => prop.Id)

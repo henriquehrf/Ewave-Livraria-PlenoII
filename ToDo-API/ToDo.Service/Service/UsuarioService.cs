@@ -36,6 +36,11 @@ namespace ToDo.Service.Service
 		{
 			if (string.IsNullOrWhiteSpace(usuario.Email) && string.IsNullOrWhiteSpace(usuario.Telefone))
 				_notificationContext.AddNotification("Cadastro sem contato", "Para efetuar o cadastro de usuário deve informar Email e/ou Telefone!");
+
+			var usuarioLogin = _usuarioRepository.UsuarioPorLogin(usuario.Login);
+			if (usuarioLogin != null && usuarioLogin.Id != usuario.Id)
+				_notificationContext.AddNotification("Duplicidade de login", "Já existe um usuário com este login");
+
 		}
 
 		public void Alterar(UsuarioModel usuario)

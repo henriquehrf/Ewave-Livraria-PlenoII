@@ -29,7 +29,7 @@ export class UsuarioListComponent implements OnInit {
                 this.usuarios.next(response);
             },
             err => {
-                alert(err);
+                alert(err.error.toString());
             }
         )
     }
@@ -54,7 +54,7 @@ export class UsuarioListComponent implements OnInit {
                 this.buscarDados();
             },
             err => {
-                alert(err);
+                alert(err.error.toString());
             }
         );
     }

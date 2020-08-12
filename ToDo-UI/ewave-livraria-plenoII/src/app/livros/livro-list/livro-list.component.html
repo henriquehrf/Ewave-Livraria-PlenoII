@@ -1,6 +1,6 @@
 <div [hidden]="exibeFormularioNovo" class="container-fluid">
     <div class="input-group m-4">
-        <button class="btn btn-primary mr-2" (click)="novo()">Novo</button>
+        <button class="btn btn-primary mr-2" (click)="novo()" [hidden]="(user$ | async).idPerfil != 1">Novo</button>
         <todo-search (textoPesquisado)="preencherTermoPesquisa($event)"></todo-search>
         <button class="btn ml-2" (click)="buscarDados()"><i class="fa fa-search" aria-hidden="true"></i></button>
     </div>

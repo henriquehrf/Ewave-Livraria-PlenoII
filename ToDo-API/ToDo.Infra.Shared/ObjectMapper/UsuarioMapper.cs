@@ -16,7 +16,8 @@ namespace ToDo.Infra.Shared.ObjectMapper
 																				  email: objModel.Email,
 																				  login: objModel.Login,
 																				  senha: objModel.Senha,
-																				  dataSuspencao: objModel.DataSuspencao
+																				  dataSuspencao: objModel.DataSuspencao,
+																				  perfilUsuario:objModel.PerfilUsuario
 																				  );
 
 		public static UsuarioModel ToModel(this Usuario objRepository) => new UsuarioModel()
@@ -32,6 +33,7 @@ namespace ToDo.Infra.Shared.ObjectMapper
 			Login = objRepository.Login,
 			Senha = objRepository.Senha,
 			DataSuspencao = objRepository.DataSuspencao,
+			PerfilUsuario = objRepository.PerfilUsuario
 		};
 
 		public static IEnumerable<UsuarioModel> ToEnumerableModel(this IList<Usuario> list) => new List<UsuarioModel>(list.Select(obj => ToModel(obj)));

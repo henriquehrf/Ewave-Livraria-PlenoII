@@ -35,6 +35,7 @@ export class UsuarioComponent implements OnInit {
       email: new FormControl(),
       tipoUsuario: new FormControl(),
       instituicaoEnsinoId: new FormControl(),
+      perfilUsuario: new FormControl(),
       login: new FormControl(),
       senha: new FormControl()
     });
@@ -46,7 +47,7 @@ export class UsuarioComponent implements OnInit {
       const usuario = this.usuarioForm.value;
       usuario.id = 0;
       usuario.instituicaoEnsinoId = parseInt(this.usuario.instituicaoEnsinoId.toString());
-      usuario.tipoUsuario = 1 // Administrador;
+      usuario.perfilUsuario = this.usuario.perfilUsuario;
       this.usuarioService.inserirUsuario(usuario).subscribe(
         () => {
           alert("Salvo com Sucesso!!!")
@@ -60,7 +61,7 @@ export class UsuarioComponent implements OnInit {
       const usuario = this.usuarioForm.value;
       usuario.instituicaoEnsinoId = parseInt(this.usuario.instituicaoEnsinoId.toString());
       usuario.id = this.usuario.id;
-      usuario.tipoUsuario = 1 // Administrador;
+      usuario.perfilUsuario = this.usuario.perfilUsuario;
       this.usuarioService.alterarUsuario(usuario).subscribe(
         () => {
           alert("Salvo com Sucesso!!!")
@@ -83,9 +84,9 @@ export class UsuarioComponent implements OnInit {
       email: "",
       instituicaoEnsinoDescricao: "",
       instituicaoEnsinoId: 0,
+      perfilUsuario: 1,
       login: "",
       senha: "",
-      tipoUsuario: 0,
       dataSuspencao: null
     };
   }
@@ -106,6 +107,10 @@ export class UsuarioComponent implements OnInit {
 
   definirInstituicao(valor) {
     this.usuario.instituicaoEnsinoId = valor;
+  }
+
+  definirPerfilUsuario(valor) {
+    this.usuario.perfilUsuario = valor;
   }
 
   voltar() {

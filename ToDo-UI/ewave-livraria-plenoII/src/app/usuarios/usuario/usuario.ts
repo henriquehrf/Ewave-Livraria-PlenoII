@@ -7,7 +7,7 @@ export interface Usuario {
     instituicaoEnsinoDescricao: string,
     telefone: string,
     email: string,
-    tipoUsuario: number,
+    perfilUsuario: number,
     login: string,
     senha: string,
     dataSuspencao: Date

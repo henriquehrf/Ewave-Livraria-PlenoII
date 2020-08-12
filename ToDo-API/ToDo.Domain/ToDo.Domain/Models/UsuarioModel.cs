@@ -13,12 +13,12 @@ namespace ToDo.Domain.Models
 		public string InstituicaoEnsinoDescricao { get; set; }
 		public string Telefone { get; set; }
 		public string Email { get; set; }
-		public int TipoUsuario { get; set; }
-		public string TipoUsuarioDescricao
+		public int PerfilUsuario { get; set; }
+		public string PerfilUsuarioDescricao
 		{
 			get
 			{
-				if (TipoUsuario == PerfilUsuarioEnum.Administrador.GetHashCode())
+				if (PerfilUsuario == PerfilUsuarioEnum.Administrador.GetHashCode())
 					return "Administrador";
 
 				return "Usuário Comum";

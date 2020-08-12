@@ -15,7 +15,8 @@ namespace ToDo.Domain.Entities
 					   string login,
 					   string senha,
 					   DateTime? dataSuspencao,
-					   int idInstituicaoEnsino)
+					   int idInstituicaoEnsino,
+					   int perfilUsuario)
 		{
 			Id = id;
 			Nome = nome;
@@ -27,6 +28,7 @@ namespace ToDo.Domain.Entities
 			Senha = senha;
 			DataSuspencao = dataSuspencao;
 			IdInstituicaoEnsino = idInstituicaoEnsino;
+			PerfilUsuario = perfilUsuario;
 
 			AddNotifications(
 				nome.Contract,
@@ -46,6 +48,7 @@ namespace ToDo.Domain.Entities
 		public DateTime? DataSuspencao { get; }
 
 		public int IdInstituicaoEnsino { get; }
+		public int PerfilUsuario { get; }
 
 		public virtual InstituicaoEnsino InstituicaoEnsino { get; }
 

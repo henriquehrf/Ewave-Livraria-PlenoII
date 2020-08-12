@@ -39,7 +39,8 @@ namespace ToDo.Service.Service
 						new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),
 						new Claim("id", usuarioBase.Id.ToString()),
 						new Claim("nome", usuarioBase.Nome),
-						new Claim("perfil", usuarioBase.TipoUsuarioDescricao),
+						new Claim("idPerfil", usuarioBase.PerfilUsuario.ToString()),
+						new Claim("perfil", usuarioBase.PerfilUsuarioDescricao),
 				}
 			);
 

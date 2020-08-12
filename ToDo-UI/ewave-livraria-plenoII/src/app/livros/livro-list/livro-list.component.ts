@@ -51,7 +51,7 @@ export class LivroListComponent implements OnInit {
   emprestar(livro) {
     this.user$.subscribe(
       (usuario) => {
-        let emprestimo  = {idLivro:livro.id, idUsuario:usuario.id} as Emprestimo;
+        let emprestimo  = {idLivro:livro.id, idUsuario:usuario.id};
         this.livroService.emprestarLivro(emprestimo).subscribe(
           () => {
             alert("Emprestimo feito com sucesso!");

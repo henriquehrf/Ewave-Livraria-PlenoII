@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EmprestimoService } from 'app/emprestimos/emprestimo.service';
-import { BehaviorSubject, interval } from 'rxjs';
+import { BehaviorSubject, interval, Observable } from 'rxjs';
 import { Emprestimo } from 'app/emprestimos/emprestimo';
 import * as moment from 'moment';
+import { UserService } from 'app/core/user/usuario.service';
+import { User } from 'app/core/user/usuario';
 
 @Component({
     selector: 'todo-livraria',
@@ -12,13 +14,22 @@ export class LivrariaComponent implements OnInit {
 
     @Input() menuSelecionado: string;
     private emprestimos = new BehaviorSubject<Emprestimo>(null);
+    user$: Observable<User>;
 
-    constructor(private emprestimoService: EmprestimoService) {
+    constructor(private emprestimoService: EmprestimoService, private userService: UserService) {
+        this.user$ = userService.getUser();
     }
 
     ngOnInit(): void {
-        this.carregarDados();
-        interval(1000 * 60).subscribe(i => this.carregarDados())
+        this.user$.subscribe(
+            (usuario) => {
+                const usuarioAdministrador = 1;
+                if (usuario.idPerfil == usuarioAdministrador) {
+                    this.carregarDados();
+                    interval(1000 * 60).subscribe(i => this.carregarDados())
+                }
+            }
+        )
     };
 
     receberValorMenu(valor) {
