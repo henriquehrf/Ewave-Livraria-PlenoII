@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { LivroComponent } from './livro.component';
+import { LivroFormComponent } from './livro-form.component';
 
 @NgModule({
-    declarations: [LivroComponent],
+    declarations: [LivroFormComponent],
     imports: [ 
         CommonModule,
         FormsModule,
         ReactiveFormsModule
     ],
-    exports: [LivroComponent]
+    exports: [LivroFormComponent]
 })
-export class LivroModule {}
+export class LivroFormModule {}

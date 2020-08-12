@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchModule } from 'app/shared/components/search/search.module';
 import { UsuarioListComponent } from './usuario-list.component';
-import { UsuarioModule } from '../usuario/usuario.module';
+import { UsuarioFormModule } from '../usuario/usuario-form.module';
 
 @NgModule({
     declarations: [UsuarioListComponent],
@@ -12,7 +12,7 @@ import { UsuarioModule } from '../usuario/usuario.module';
         FormsModule,
         ReactiveFormsModule,
         SearchModule,
-        UsuarioModule
+        UsuarioFormModule
     ],
     exports: [
         UsuarioListComponent

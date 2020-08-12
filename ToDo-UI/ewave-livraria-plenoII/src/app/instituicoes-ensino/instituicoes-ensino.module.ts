@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { InstituicaoEnsinoModule } from './instituicao-ensino/instituicao-ensino.module';
+import { InstituicaoEnsinoFormModule } from './instituicao-ensino/instituicao-ensino-form.module';
 import { InstituicaoEnsinoListModule } from './instituicao-ensino-list/instituicao-ensino-list.module';
 import { CommonModule } from '@angular/common';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -7,9 +7,9 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
     imports: [
         CommonModule,
-        InstituicaoEnsinoModule,
+        InstituicaoEnsinoFormModule,
         InstituicaoEnsinoListModule
     ],
-    exports: [InstituicaoEnsinoModule, InstituicaoEnsinoListModule]
+    exports: [InstituicaoEnsinoFormModule, InstituicaoEnsinoListModule]
 })
 export class InstituicoesEnsinoModule { }

@@ -5,10 +5,10 @@ import { LivroService } from './livro.service';
 
 @Component({
   selector: 'todo-livro',
-  templateUrl: './livro.component.html',
-  styleUrls: ['./livro.component.css']
+  templateUrl: './livro-form.component.html',
+  styleUrls: ['./livro-form.component.css']
 })
-export class LivroComponent implements OnInit {
+export class LivroFormComponent implements OnInit {
 
 
   @Input() livro: Livro;

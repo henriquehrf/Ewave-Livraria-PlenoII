@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
-import { UsuarioComponent } from './usuario.component';
+import { InstituicaoEnsinoFormComponent } from './instituicao-ensino-form.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropDownModule } from 'app/shared/components/dropdown/dropdown.module';
 
 @NgModule({
-    declarations: [UsuarioComponent],
+    declarations: [InstituicaoEnsinoFormComponent],
     imports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
         DropDownModule],
     exports: [
-        UsuarioComponent
+        InstituicaoEnsinoFormComponent
     ]
 })
-export class UsuarioModule { }
+export class InstituicaoEnsinoFormModule { }

@@ -1,15 +1,13 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { FormGroup, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { InstituicaoEnsinoService } from './instituicao-ensino.service';
-import { Router } from '@angular/router';
-import { InstituicaoEnsinoModule } from './instituicao-ensino.module';
 import { InstituicaoEnsino } from './instituicao-ensino';
 
 @Component({
   selector: 'todo-instituicao-ensino',
-  templateUrl: './instituicao-ensino.component.html'
+  templateUrl: './instituicao-ensino-form.component.html'
 })
-export class InstituicaoEnsinoComponent implements OnInit {
+export class InstituicaoEnsinoFormComponent implements OnInit {
 
   @Input() instituicao: InstituicaoEnsino;
   @Output() exibeMenuNovo = new EventEmitter<boolean>();

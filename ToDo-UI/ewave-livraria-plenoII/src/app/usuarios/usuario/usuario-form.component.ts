@@ -7,9 +7,9 @@ import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'todo-usuario',
-  templateUrl: './usuario.component.html'
+  templateUrl: './usuario-form.component.html'
 })
-export class UsuarioComponent implements OnInit {
+export class UsuarioFormComponent implements OnInit {
 
   @Input() usuario: Usuario;
   @Output() exibeMenuNovo = new EventEmitter<boolean>();

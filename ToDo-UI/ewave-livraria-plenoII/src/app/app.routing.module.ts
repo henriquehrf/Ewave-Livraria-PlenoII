@@ -6,7 +6,7 @@ import { LivrariaComponent } from './livraria/livraria.component';
 import { AuthGuard } from './core/auth/auth.guard';
 import { HomeGuard } from './core/auth/home.guard';
 import { NotFoundComponent } from './erros/not-found/not-found.component';
-import { InstituicaoEnsinoComponent } from './instituicoes-ensino/instituicao-ensino/instituicao-ensino.component';
+import { InstituicaoEnsinoFormComponent } from './instituicoes-ensino/instituicao-ensino/instituicao-ensino-form.component';
 import { InstituicaoEnsinoListComponent } from './instituicoes-ensino/instituicao-ensino-list/instituicao-ensino-list.component';
 
 const routes: Routes = [

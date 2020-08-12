@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InstituicaoEnsinoListComponent } from './instituicao-ensino-list.component';
-import { InstituicaoEnsinoModule } from '../instituicao-ensino/instituicao-ensino.module';
+import { InstituicaoEnsinoFormModule } from '../instituicao-ensino/instituicao-ensino-form.module';
 import { SearchModule } from 'app/shared/components/search/search.module';
 
 @NgModule({
@@ -11,7 +11,7 @@ import { SearchModule } from 'app/shared/components/search/search.module';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        InstituicaoEnsinoModule,
+        InstituicaoEnsinoFormModule,
         SearchModule],
     exports: [
         InstituicaoEnsinoListComponent

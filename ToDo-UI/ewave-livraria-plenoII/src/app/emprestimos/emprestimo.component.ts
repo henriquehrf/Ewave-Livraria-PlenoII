@@ -25,14 +25,16 @@ export class EmprestimoComponent implements OnInit {
     buscarDados() {
         this.user$.subscribe(
             (usuario) => {
-                this.emprestimoService.retornarEmprestimosAtivoPorIdUsuario(usuario.id).subscribe(
-                    (response) => {
-                        this.emprestimos.next(response as Emprestimo);
-                    },
-                    err => {
-                        alert(err);
-                    }
-                )
+                if(usuario){
+                    this.emprestimoService.retornarEmprestimosAtivoPorIdUsuario(usuario.id).subscribe(
+                        (response) => {
+                            this.emprestimos.next(response as Emprestimo);
+                        },
+                        err => {
+                            alert(err);
+                        }
+                    )
+                }
             }
         )
     }

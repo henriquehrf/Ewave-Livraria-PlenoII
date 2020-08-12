@@ -24,7 +24,7 @@ export class LivrariaComponent implements OnInit {
         this.user$.subscribe(
             (usuario) => {
                 const usuarioAdministrador = 1;
-                if (usuario.idPerfil == usuarioAdministrador) {
+                if (usuario && usuario.idPerfil == usuarioAdministrador) {
                     this.carregarDados();
                     interval(1000 * 60).subscribe(i => this.carregarDados())
                 }
@@ -43,7 +43,9 @@ export class LivrariaComponent implements OnInit {
     }
 
     retornarStatusEmprestimo(emprestimo: Emprestimo) {
-        var estaEmAtraso = moment().isAfter(emprestimo.dataPrevistaDevolucao);
+        const dataDevolucao = moment(emprestimo.dataPrevistaDevolucao).format('YYYY-MM-DD');
+        const hoje = moment(new Date().getTime()).format('YYYY-MM-DD');
+        const estaEmAtraso = moment(hoje).isAfter(dataDevolucao);
         if (estaEmAtraso)
             return "alert-danger"
         return "alert-dark"
