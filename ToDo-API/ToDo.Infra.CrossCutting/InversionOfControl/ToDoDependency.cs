@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ToDo.Infra.Data.Context;
 
@@ -6,11 +7,11 @@ namespace ToDo.Infra.CrossCutting.InversionOfControl
 {
 	public static class ToDoDependency
 	{
-		public static void AddDependencySql(this IServiceCollection services)
+		public static void AddDependencySql(this IServiceCollection services, IConfiguration configuration)
 		{
 			services.AddDbContext<ToDoContext>(context =>
 			{
-				context.UseSqlServer("Server=DESKTOP-5J4DB80\\SQLEXPRESS;Database=LivrariaToDo;integrated security=true;");
+				context.UseSqlServer(configuration["ConnectionString"]);
 			});
 		}
 	}

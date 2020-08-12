@@ -31,7 +31,7 @@ namespace ToDo.Application
 				config.EnableEndpointRouting = false;
 				config.Filters.Add<NotificationFilter>();
 			});
-			services.AddDependencySql();
+			services.AddDependencySql(Configuration);
 			services.AddSqlRepositoryDependency();
 			services.AddServiceDependency();
 			services.AddSwaggerDependency();

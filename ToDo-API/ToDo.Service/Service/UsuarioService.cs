@@ -12,11 +12,13 @@ namespace ToDo.Service.Service
 	public class UsuarioService : IUsuarioService
 	{
 		private readonly IUsuarioRepository _usuarioRepository;
+		private readonly IEmprestimoRepository _emprestimoRepository;
 		private readonly NotificationContext _notificationContext;
 
-		public UsuarioService(IUsuarioRepository usuarioRepository, NotificationContext notificationContext)
+		public UsuarioService(IUsuarioRepository usuarioRepository, IEmprestimoRepository emprestimoRepository, NotificationContext notificationContext)
 		{
 			_usuarioRepository = usuarioRepository;
+			_emprestimoRepository = emprestimoRepository;
 			_notificationContext = notificationContext;
 		}
 
@@ -46,7 +48,14 @@ namespace ToDo.Service.Service
 				_usuarioRepository.Alterar(usuario);
 		}
 
-		public void Excluir(int id) => _usuarioRepository.Excluir(id);
+		public void Excluir(int id)
+		{
+			if(_emprestimoRepository.TodosEmprestimoAtivo(id).Any())
+				 _notificationContext.AddNotification("Empréstimo Ativo", "Este usuário possui empréstimos ativo");
+
+			if (_notificationContext.Valid)
+			_usuarioRepository.Excluir(id);
+		}
 
 		public UsuarioModel UsuarioPorLogin(string login) => _usuarioRepository.UsuarioPorLogin(login);
 		public IEnumerable<UsuarioModel> TodosUsuarios() => _usuarioRepository.Todos();

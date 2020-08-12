@@ -44,7 +44,6 @@ namespace ToDo.Service.Service
 				_livroRepository.Alterar(livro);
 			}
 		}
-
 		private void ValidarEmprestimo(UsuarioModel usuario, bool usuarioEstaSuspenso, LivroModel livro)
 		{
 			if (usuarioEstaSuspenso)
@@ -65,19 +64,18 @@ namespace ToDo.Service.Service
 
 		public void Devolver(EmprestimoModel emprestimo)
 		{
-
-			emprestimo.DataDevolucao = DateTime.Now;
+			emprestimo.DataDevolucao = DateTime.Today;
 			emprestimo.Status = StatusEmprestimoEnum.Devolvido.GetHashCode();
 			_emprestimoRepository.Alterar(emprestimo);
 
-			var livro = _livroRepository.ById(emprestimo.Livro.Id);
+			var livro = _livroRepository.ById(emprestimo.IdLivro);
 			livro.Disponibilidade = true;
 			_livroRepository.Alterar(livro);
 
-			if (emprestimo.DataPrevistaDevolucao < DateTime.Now)
+			if (emprestimo.DataPrevistaDevolucao < DateTime.Today)
 			{
 				var usuario = _usuarioRepository.UsuarioPorId(emprestimo.IdUsuario);
-				usuario.DataSuspencao = DateTime.Now.AddDays(30);
+				usuario.DataSuspencao = DateTime.Today.AddDays(30);
 				_usuarioRepository.Alterar(usuario);
 			}
 		}

@@ -1,4 +1,5 @@
 ﻿using System;
+using ToDo.Domain.Enum;
 
 namespace ToDo.Domain.Models
 {
@@ -17,7 +18,10 @@ namespace ToDo.Domain.Models
 		{
 			get
 			{
-				return "Administrador";
+				if (TipoUsuario == PerfilUsuarioEnum.Administrador.GetHashCode())
+					return "Administrador";
+
+				return "Usuário Comum";
 			}
 		}
 		public string Login { get; set; }
