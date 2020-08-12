@@ -2,7 +2,7 @@
 
 Este é um projeto MVP <i>(Minimal Viable Product)</i> da <strong>Livraria ToDo </strong>;
 
-<hr></hr>
+<hr>
 
 <h3>Tabelas e Campos do Sistema</h3>
 
@@ -59,7 +59,7 @@ Este é um projeto MVP <i>(Minimal Viable Product)</i> da <strong>Livraria ToDo 
    </li>
 </ul>
 
-<hr></hr>
+<hr>
 <h3>Funcionalidades</h3>
 <ul>
   <li>
@@ -78,42 +78,66 @@ Este é um projeto MVP <i>(Minimal Viable Product)</i> da <strong>Livraria ToDo 
   </li>
 </ul>
 
-<hr></hr>
+<hr>
 
 <h3>Técnologias/Arquitetura do projeto</h3>
 
 <h4>Back-end</h4>
 <ul>
-<li>ASP.NET Core 3.1</li>
-<li>Entity Framework Core 3.1.6</li>
-<li>Flunt Validation 1.0.5</li>
-<li>Swagger UI 5.5.0</li>
-<li>Sql Server</li>
-<li>X Unit 2.4.0</li>
-<li>Fluent Assertion 5.10.3</li>
-<li>DDD - Domanin Driven Design</li>
-<li>Repository Pattern</li>
-<li>Mapper by Extension Methods</li>
-<li>Notification Pattern</li>
-<li>Value Types</li>
-<li>Autenticação JWT(JSON Web Tokens)</li>
+  <li>ASP.NET Core 3.1</li>
+  <li>Entity Framework Core 3.1.6</li>
+  <li>Flunt Validation 1.0.5</li>
+  <li>Swagger UI 5.5.0</li>
+  <li>Sql Server</li>
+  <li>X Unit 2.4.0</li>
+  <li>Fluent Assertion 5.10.3</li>
+  <li>DDD (Domanin Driven Design)</li>
+  <li>Repository Pattern</li>
+  <li>Mapper by Extension Methods</li>
+  <li>Notification Pattern</li>
+  <li>Value Types</li>
+  <li>Autenticação JWT(JSON Web Tokens)</li>
 </ul>
 
 <h4>Front-end</h4>
 <ul>
-<li>Angular CLI 6.0.8</li>
-<li>Node 12.16.3</li>
-<li>Angular 6.1.10</li>
-<li>Rxjs 6.0.0</li>
-<li>Typescript 2.7.2</li>
-<li>Webpack 4.8.3</li>
-<li>SPA (Single Page Application)</li>
+  <li>Angular CLI 6.0.8</li>
+  <li>Node 12.16.3</li>
+  <li>Angular 6.1.10</li>
+  <li>Rxjs 6.0.0</li>
+  <li>Typescript 2.7.2</li>
+  <li>Webpack 4.8.3</li>
+  <li>SPA (Single Page Application)</li>
 </ul>
 
-
-<hr></hr>
+<hr>
 
 <h3>Executando o Projeto</h3>
 
 <h4>Back-end</h4>
 
+<ul>
+  <li>Configure a connection string e a pasta de imagens no arquivo <strong>appsettings.json</strong></li>
+  <li>Selecione o projeto ToDo.Data.Infra e execute os comando para criação do banco de dados no Package Manager Console</li>
+  <li>De um <strong>Set as Startup</strong> Project projeto <strong>ToDo.Application</strong></li>
+</ul>
+
+<h4>Front-end</h4>
+<ul>
+  <li>Navegue até a pasta do projeto</li>
+  <li>Execute <strong>npm install</strong> para instalar as dependências</li>
+  <li>Execute <strong>ng serve -o</strong></li>
+</ul>
+
+<hr>
+
+<h3>Melhorias futuras</h3>
+<ul>
+  <li>Revisar layout para ser totalmente responsivo</li>
+  <li>Melhoria na UX</li>
+  <li>Teste de UX</li>
+  <li>Recurso de reserva livro</li>
+  <li>Cancelar uma reserva</li>
+  <li>Notificação ao usuário, preferêncialmente por email</li>
+  <li>Recurso de inativação de cadastro</li>
+</ul>
